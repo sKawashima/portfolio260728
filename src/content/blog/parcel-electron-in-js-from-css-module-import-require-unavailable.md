@@ -23,18 +23,18 @@ tags: ["Node.js", "JavaScript", "Electron", "Parcel", "CSS"]
 
 通常のParcelでは、JS経由でCSSをimport/requireできる。
 
-```html:index.html
+```html title="index.html"
 <script src='./app.js'>
 ```
 
-```javascript:app.js
+```javascript title="app.js"
 import 'reset-css'
 // npmモジュールの「reset-css」をimport
 import './style.sass'
 // 自分で書いた「style.sass」をimport
 ```
 
-```shell:出力実行コマンド
+```shell title="出力実行コマンド"
 parcel index.html
 ```
 
@@ -42,12 +42,12 @@ parcel index.html
 
 ParcelにはElectron用のモード`-t electron`があるので、それを使います。これを忘れるとエラーがでます。
 
-```text:ファイル構成例
+```text title="ファイル構成例"
 ./package.jsonなどは略
 ./src/app.js
 ```
 
-```shell:実行コマンド例
+```shell title="実行コマンド例"
 parcel build src/app.js -t electron -d ./; electron .
 # -t electron: electron mode
 # -d ./      : 書き出すフォルダの指定
@@ -55,14 +55,14 @@ parcel build src/app.js -t electron -d ./; electron .
 
 ## ハマったこと
 
-```javascript:app.js
+```javascript title="app.js"
 import 'reset-css'
 import './style.sass'
 ```
 
 これを、
 
-```shell:実行コマンド例
+```shell title="実行コマンド例"
 parcel build src/app.js -t electron -d ./; electron .
 ```
 
@@ -72,13 +72,13 @@ parcel build src/app.js -t electron -d ./; electron .
 
 どうやら、
 
-```javascript:app.js
+```javascript title="app.js"
 import 'reset-css'
 ```
 
 は出来ないようです。
 
-```javascript:app.js
+```javascript title="app.js"
 import './style.sass'
 ```
 
@@ -88,7 +88,7 @@ import './style.sass'
 
 Sassファイルからimportしました。
 
-```sass:style.sass
+```sass title="style.sass"
 @import 'node_modules/reset-css/sass/reset'
 ```
 

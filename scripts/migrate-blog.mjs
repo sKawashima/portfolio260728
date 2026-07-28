@@ -98,6 +98,41 @@ const warnings = []
 for (const post of posts) {
   let body = post.body
 
+  // コードフェンスの Hexo 記法「言語:タイトル」を「言語 title="タイトル"」へ変換する。
+  // ファイル名だけのフェンス(app.js 等)は拡張子から言語を推定する
+  body = body.replace(/^```([^\n`]+)$/gm, (line, info) => {
+    const trimmed = info.trim()
+    if (/\s/.test(trimmed)) return line
+    const extLang = {
+      js: 'js',
+      mjs: 'js',
+      ts: 'ts',
+      json: 'json',
+      html: 'html',
+      css: 'css',
+      scss: 'scss',
+      sass: 'sass',
+      yml: 'yaml',
+      yaml: 'yaml',
+      rb: 'ruby',
+      sh: 'shell',
+      vue: 'vue',
+    }
+    const colon = trimmed.match(/^([A-Za-z0-9_+-]+):(.*)$/)
+    if (colon) {
+      const [, lang, title] = colon
+      return title
+        ? `\`\`\`${lang} title="${title.replace(/"/g, '&quot;')}"`
+        : `\`\`\`${lang}`
+    }
+    if (trimmed.includes('.')) {
+      const ext = trimmed.split('.').pop().toLowerCase()
+      const lang = extLang[ext]
+      if (lang) return `\`\`\`${lang} title="${trimmed}"`
+    }
+    return line
+  })
+
   // 相対参照の画像を絶対パスへ(旧URL /blog/y/m/slug/<image> と同一のパスに配置している)
   body = body.replace(
     /!\[([^\]]*)\]\((?!https?:\/\/|\/)([^)]+)\)/g,

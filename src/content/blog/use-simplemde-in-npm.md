@@ -26,7 +26,7 @@ tags: ["JavaScript", "npm", "simplemde"]
 npm i simplemde
 ```
 
-```app.js
+```js title="app.js"
 import SimpleMDE from 'simplemde'
 
 const simplemde = new SimpleMDE()
@@ -40,7 +40,7 @@ const simplemde = new SimpleMDE()
 
 ## 対処：直接CSSをimportする
 
-```app.js
+```js title="app.js"
 import SimpleMDE from 'simplemde'
 import 'simplemde/dist/simplemde.min.css'
 
