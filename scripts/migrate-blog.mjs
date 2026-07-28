@@ -142,6 +142,10 @@ for (const post of posts) {
     },
   )
 
+  // 手書きの目次(「## 目次」+ <!-- toc -->)は記事ページで自動生成するため除去
+  body = body.replace(/^#{2,3}\s*目次\s*\n+<!-- toc -->\s*\n?/gm, '')
+  body = body.replace(/^<!-- toc -->\s*\n?/gm, '')
+
   body = body.replace(/\{%\s*(?:linkPreview|twitter)\s+(\S+)\s*%\}/g, '$1')
 
   body = body.replace(
