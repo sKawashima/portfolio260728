@@ -102,7 +102,8 @@ for (const post of posts) {
   // ファイル名だけのフェンス(app.js 等)は拡張子から言語を推定する
   body = body.replace(/^```([^\n`]+)$/gm, (line, info) => {
     const trimmed = info.trim()
-    if (/\s/.test(trimmed)) return line
+    // 既に title="..." 等のメタ記法が付いているフェンスは変換済みとして触らない
+    if (/\stitle=/.test(trimmed)) return line
     const extLang = {
       js: 'js',
       mjs: 'js',
@@ -125,7 +126,7 @@ for (const post of posts) {
         ? `\`\`\`${lang} title="${title.replace(/"/g, '&quot;')}"`
         : `\`\`\`${lang}`
     }
-    if (trimmed.includes('.')) {
+    if (!/\s/.test(trimmed) && trimmed.includes('.')) {
       const ext = trimmed.split('.').pop().toLowerCase()
       const lang = extLang[ext]
       if (lang) return `\`\`\`${lang} title="${trimmed}"`
