@@ -21,7 +21,7 @@ Issue: #4
 
 ## 判断
 
-- **Astro 7 の Markdown 処理**: remark プラグックを使うため `@astrojs/markdown-remark` を明示追加(v7からデフォルトプロセッサが変更され、remark利用時は必須)
+- **Astro 7 の Markdown 処理**: remark プラグインを使うため `@astrojs/markdown-remark` を明示追加(v7からデフォルトプロセッサが変更され、remark利用時は必須)
 - リンクカードはビルド時OGP取得をせず、ドメイン+URLのシンプルカードに(外部への依存とビルド時間を避ける。必要になれば後日拡張)
 - タグ・カテゴリのURLスラッグは小文字化+スペース/スラッシュをハイフンに変換(旧HexoのタグページURLは維持対象外。Issue #3 の決定を踏襲)
 

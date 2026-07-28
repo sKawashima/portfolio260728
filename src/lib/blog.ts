@@ -34,12 +34,14 @@ export function formatDate(date: Date) {
   }).format(date)
 }
 
-// タグ・カテゴリ名をURLセグメントにする(スペース・スラッシュをハイフンへ、小文字化)
+// タグ・カテゴリ名をURLセグメントにする。
+// 小文字化し、文字・数字以外(スペース・スラッシュ・#?%等のURL予約文字)をハイフンへ正規化する
 export function slugifyTerm(name: string) {
   return name
     .trim()
     .toLowerCase()
-    .replace(/[\s/]+/g, '-')
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/^-+|-+$/g, '')
 }
 
 // 一覧用の抜粋。<!-- more --> より前の本文からMarkdown記法を落として先頭を返す
