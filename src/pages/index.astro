@@ -1,9 +1,13 @@
 ---
+import { getCollection } from 'astro:content'
 import Footer from '../components/Footer.astro'
 import SiteHeader from '../components/SiteHeader.astro'
 import SK from '../components/SK.astro'
-import Works from '../components/Works.astro'
+import WorksGrid from '../components/WorksGrid.astro'
 import Layout from '../layouts/Layout.astro'
+
+const works = await getCollection('works')
+const recentWorks = works.sort((a, b) => b.data.sortDate - a.data.sortDate).slice(0, 6)
 ---
 
 <Layout title="sKawashima Portfolio">
@@ -15,7 +19,15 @@ import Layout from '../layouts/Layout.astro'
     <div class="bar"></div>
     <p class="lede">デザインと開発とアートの間でざくざくやってます。</p>
   </section>
-  <Works />
+  <section class="digest">
+    <div class="inner">
+      <div class="digest-head">
+        <h2>Works</h2>
+        <a class="more" href="/works/">すべての作品を見る →</a>
+      </div>
+      <WorksGrid works={recentWorks} />
+    </div>
+  </section>
   <Footer />
 </Layout>
 
@@ -57,5 +69,40 @@ import Layout from '../layouts/Layout.astro'
   .lede {
     margin-top: 20px;
     color: var(--color-text-sub);
+  }
+
+  .digest {
+    padding: 0 0 112px;
+  }
+
+  .inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .digest-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+
+  .digest-head h2 {
+    color: var(--color-accent-strong);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .more {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .more:hover {
+    text-decoration: underline;
   }
 </style>
