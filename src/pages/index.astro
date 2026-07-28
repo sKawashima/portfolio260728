@@ -7,8 +7,8 @@ import Layout from '../layouts/Layout.astro'
 import { blogPath, formatDate, sortedBlogPosts } from '../lib/blog'
 
 const works = await getCollection('works')
-const recentWorks = works.sort((a, b) => b.data.sortDate - a.data.sortDate).slice(0, 6)
-const recentPosts = (await sortedBlogPosts()).slice(0, 3)
+const recentWorks = works.sort((a, b) => b.data.sortDate - a.data.sortDate).slice(0, 3)
+const recentPosts = (await sortedBlogPosts()).slice(0, 5)
 ---
 
 <Layout title="sKawashima Portfolio">
