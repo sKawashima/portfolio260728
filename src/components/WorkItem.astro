@@ -1,5 +1,4 @@
 ---
-import { render } from 'astro:content'
 import type { CollectionEntry } from 'astro:content'
 
 interface Props {
@@ -7,94 +6,57 @@ interface Props {
 }
 
 const { work } = Astro.props
-const {
-  title,
-  genres,
-  activity,
-  memberCount,
-  role,
-  period,
-  date,
-  technologies,
-  thumbnail,
-  youtubeId,
-  link,
-} = work.data
-const { Content } = await render(work)
+const { title, genres, thumbnail, youtubeId } = work.data
 
-const details = [
-  ['活動', activity],
-  ['活動人数', memberCount],
-  ['担当', role],
-  ['制作期間', period],
-  ['制作時期', date],
-  ['使用技術', technologies],
-]
+// YouTube作品はサムネ未指定のときYouTube提供画像を使う(4:3のため中央トリミング)
+const thumbSrc =
+  thumbnail ?? (youtubeId ? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg` : undefined)
+const thumbPosition = thumbnail ? 'top' : 'center'
 ---
 
-<article class="card">
+<a class="card" href={`/works/${work.id}/`}>
   {
-    youtubeId ? (
+    thumbSrc && (
       <div class="thumb-wrap">
-        <iframe
-          class="thumb-youtube"
-          src={`https://www.youtube.com/embed/${youtubeId}?rel=0`}
-          title={title}
-          loading="lazy"
-          allow="autoplay; encrypted-media"
-          allowfullscreen
-        />
+        <img class="thumb" src={thumbSrc} alt="" style={`object-position: ${thumbPosition};`} loading="lazy" />
       </div>
-    ) : thumbnail ? (
-      <div class="thumb-wrap">
-        <img class="thumb" src={thumbnail} alt={title} loading="lazy" />
-      </div>
-    ) : null
+    )
   }
   <div class="body">
+    <h3 class="title">{title}</h3>
     <div class="chips">
       {genres.map((genre) => <span class="chip">{genre.name}</span>)}
     </div>
-    <h3 class="title">
-      {
-        link ? (
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            {title}
-          </a>
-        ) : (
-          title
-        )
-      }
-    </h3>
-    <dl class="details">
-      {
-        details.map(([label, value]) => (
-          <>
-            <dt>{label}</dt>
-            <dd>{value}</dd>
-          </>
-        ))
-      }
-    </dl>
-    <div class="summary">
-      <Content />
-    </div>
   </div>
-</article>
+</a>
 
 <style>
   .card {
     display: flex;
     flex-direction: column;
-    background: var(--color-card);
-    border: 1px solid var(--color-border);
-    border-radius: 4px;
-    overflow: hidden;
+    gap: 14px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .card:hover .title {
+    color: var(--color-accent);
+  }
+
+  .card:hover .thumb {
+    opacity: 0.85;
+  }
+
+  .card:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
   }
 
   .thumb-wrap {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     background: var(--color-bg-section);
+    border-radius: 6px;
+    overflow: hidden;
   }
 
   .thumb {
@@ -102,20 +64,19 @@ const details = [
     height: 100%;
     object-fit: cover;
     display: block;
-  }
-
-  .thumb-youtube {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    display: block;
+    transition: opacity 0.15s ease;
   }
 
   .body {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 20px;
+    gap: 8px;
+  }
+
+  .title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
   }
 
   .chips {
@@ -133,43 +94,5 @@ const details = [
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.06em;
-  }
-
-  .title {
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.4;
-  }
-
-  .title a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .title a:hover {
-    color: var(--color-accent);
-    text-decoration: underline;
-  }
-
-  .details {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 2px 12px;
-    font-size: 12.5px;
-  }
-
-  .details dt {
-    color: var(--color-text-sub);
-    text-align: right;
-  }
-
-  .details dd {
-    margin: 0;
-  }
-
-  .summary {
-    font-size: 13.5px;
-    color: var(--color-text-sub);
-    line-height: 1.8;
   }
 </style>
