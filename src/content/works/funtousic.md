@@ -13,7 +13,7 @@ period: "2months"
 date: "2014年11月〜2015年1月"
 sortDate: "2014-11-01"
 technologies: "HTML,CSS / AviUtl / Ableton Live"
-thumbnail: "/funtousic.png"
+thumbnail: "./images/funtousic.png"
 link: "http://skawashima.com/temp/funtousic/"
 ---
 

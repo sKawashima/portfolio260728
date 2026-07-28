@@ -10,7 +10,7 @@ period: "3weeks"
 date: "2015年11月"
 sortDate: "2015-11-01"
 technologies: "Illustrator / HTML,SCSS"
-thumbnail: "/soracamera.png"
+thumbnail: "./images/soracamera.png"
 link: "http://soracamera.com/"
 ---
 

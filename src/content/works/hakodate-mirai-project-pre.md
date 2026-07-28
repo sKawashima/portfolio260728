@@ -10,7 +10,7 @@ period: "1day"
 date: "2016年9月"
 sortDate: "2016-09-01"
 technologies: "Illustrator / HTML,Sass / PHP"
-thumbnail: "/hmp-pre.png"
+thumbnail: "./images/hmp-pre.png"
 link: "http://hakodate-miraiproject.jp/pre-comming/"
 ---
 

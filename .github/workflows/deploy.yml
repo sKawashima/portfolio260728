@@ -24,6 +24,18 @@ jobs:
       - name: Build
         run: pnpm build
 
+      # astro:assets の最適化元(原寸PNG/JPG)は _astro/ にコピーされるがHTMLから参照されないため、
+      # デプロイサイズ削減のため未参照の原本を除去する(参照があれば失敗して気づけるよう検査付き)
+      - name: Remove unreferenced original images
+        run: |
+          for f in $(find dist/_astro -type f \( -name '*.png' -o -name '*.jpg' -o -name '*.jpeg' \)); do
+            name=$(basename "$f")
+            if grep -rq "$name" dist --include='*.html' --include='*.css'; then
+              echo "::error::$name is referenced; aborting cleanup" && exit 1
+            fi
+            rm "$f"
+          done
+
       - name: Upload build artifact
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-artifact@v4

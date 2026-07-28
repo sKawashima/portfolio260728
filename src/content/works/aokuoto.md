@@ -12,7 +12,7 @@ period: "2016/10/26 - 2016/11/25"
 date: "2016年10月"
 sortDate: "2016-10-01"
 technologies: "Ableton Live / After Effects / Premiere Pro"
-thumbnail: "/aokuototo.jpg"
+thumbnail: "./images/aokuototo.jpg"
 link: "https://photos.app.goo.gl/PtQuQ569RDGNlrz92"
 ---
 

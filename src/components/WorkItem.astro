@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
 
 interface Props {
@@ -9,16 +10,31 @@ const { work } = Astro.props
 const { title, genres, thumbnail, youtubeId } = work.data
 
 // YouTube作品はサムネ未指定のときYouTube提供画像を使う(4:3のため中央トリミング)
-const thumbSrc =
-  thumbnail ?? (youtubeId ? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg` : undefined)
-const thumbPosition = thumbnail ? 'top' : 'center'
+const youtubeThumb =
+  !thumbnail && youtubeId ? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg` : undefined
 ---
 
 <a class="card" href={`/works/${work.id}/`}>
   {
-    thumbSrc && (
+    thumbnail && (
       <div class="thumb-wrap">
-        <img class="thumb" src={thumbSrc} alt="" style={`object-position: ${thumbPosition};`} loading="lazy" />
+        <Image
+          class="thumb"
+          src={thumbnail}
+          alt=""
+          width={640}
+          densities={[1, 2]}
+          format="webp"
+          style="object-position: top;"
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+  {
+    youtubeThumb && (
+      <div class="thumb-wrap">
+        <img class="thumb" src={youtubeThumb} alt="" style="object-position: center;" loading="lazy" />
       </div>
     )
   }

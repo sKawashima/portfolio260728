@@ -10,7 +10,7 @@ period: "4day"
 date: "2018年2月"
 sortDate: "2018-02-01"
 technologies: "Parcel / Pug / Sass / JavaScript"
-thumbnail: "/hakolab.png"
+thumbnail: "./images/hakolab.png"
 link: "http://hakolab.co.jp/"
 ---
 
