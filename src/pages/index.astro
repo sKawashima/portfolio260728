@@ -1,15 +1,13 @@
 ---
 import Footer from '../components/Footer.astro'
+import SiteHeader from '../components/SiteHeader.astro'
 import SK from '../components/SK.astro'
-import ThemeToggle from '../components/ThemeToggle.astro'
 import Works from '../components/Works.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="sKawashima Portfolio">
-  <header>
-    <ThemeToggle />
-  </header>
+  <SiteHeader />
   <section class="hero">
     <div class="logo"><SK /></div>
     <p class="eyebrow">Design · Development · Art</p>
@@ -22,12 +20,6 @@ import Layout from '../layouts/Layout.astro'
 </Layout>
 
 <style>
-  header {
-    display: flex;
-    justify-content: flex-end;
-    padding: 16px 24px;
-  }
-
   .hero {
     max-width: 1040px;
     margin: 0 auto;

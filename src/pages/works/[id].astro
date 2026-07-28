@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content'
 import Footer from '../../components/Footer.astro'
-import ThemeToggle from '../../components/ThemeToggle.astro'
+import SiteHeader from '../../components/SiteHeader.astro'
 import Layout from '../../layouts/Layout.astro'
 
 export async function getStaticPaths() {
@@ -39,10 +39,7 @@ const details = [
 ---
 
 <Layout title={`${title} | sKawashima Portfolio`}>
-  <header>
-    <a class="back" href="/#works">← Works</a>
-    <ThemeToggle />
-  </header>
+  <SiteHeader />
   <article class="work">
     <div class="head">
       <div class="chips">
@@ -93,26 +90,6 @@ const details = [
 </Layout>
 
 <style>
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 16px 24px;
-  }
-
-  .back {
-    color: var(--color-accent);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-  }
-
-  .back:hover {
-    text-decoration: underline;
-  }
-
   .work {
     max-width: 800px;
     margin: 0 auto;
