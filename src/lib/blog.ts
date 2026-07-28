@@ -35,12 +35,13 @@ export function formatDate(date: Date) {
 }
 
 // タグ・カテゴリ名をURLセグメントにする。
-// 小文字化し、文字・数字以外(スペース・スラッシュ・#?%等のURL予約文字)をハイフンへ正規化する
+// 小文字化し、URLセグメントとして危険な文字(スペース・スラッシュ・#?%等)をハイフンへ正規化する。
+// `!` はパスとして合法かつ固有名詞(例: タグ「!kie」)で使われるため保持する
 export function slugifyTerm(name: string) {
   return name
     .trim()
     .toLowerCase()
-    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/[^\p{L}\p{N}!]+/gu, '-')
     .replace(/^-+|-+$/g, '')
 }
 
