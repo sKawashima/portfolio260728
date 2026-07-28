@@ -50,7 +50,7 @@ GoogleによるManifest Documentでは、`manifest.json`というファイル名
 
 `manifest.webmanifest`の中身は`manifest.json`と同じです。[MDNによるドキュメント](https://developer.mozilla.org/en-US/docs/Web/Manifest)に記載されている例をコピペしていじればすぐに作成できます。
 
-```json:Example_manifest(MDN_Webサイトより)
+```json title="Example_manifest(MDN_Webサイトより)"
 {
   "name": "HackerWeb",
   "short_name": "HackerWeb",

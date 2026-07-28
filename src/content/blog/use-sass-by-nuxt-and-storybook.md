@@ -21,7 +21,7 @@ Parcelばっかり書いていて、久しぶりのWebpackに戸惑った。
 
 ちゃんと`indentedSyntax`指定しないと`<style lang='sass'>`指定でもエラーが出る。
 
-```webpack.config.js
+```js title="webpack.config.js"
 // 略
 config.module.rules.push({
   test: /\.sass$/,

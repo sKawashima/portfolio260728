@@ -9,7 +9,7 @@ tags: ["JavaScript", "Vue"]
 
 これを解決します。
 
-```js:とある.vueファイル(エラー)
+```js title="とある.vueファイル(エラー)"
 export default {
   data: () => {
     return {
@@ -46,7 +46,7 @@ export default {
 
 ## 対処法
 
-```js:とある.vueファイル
+```js title="とある.vueファイル"
 var vm // --①
 export default {
   data: () => {
