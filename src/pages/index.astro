@@ -4,9 +4,11 @@ import Footer from '../components/Footer.astro'
 import SiteHeader from '../components/SiteHeader.astro'
 import WorksGrid from '../components/WorksGrid.astro'
 import Layout from '../layouts/Layout.astro'
+import { blogPath, formatDate, sortedBlogPosts } from '../lib/blog'
 
 const works = await getCollection('works')
 const recentWorks = works.sort((a, b) => b.data.sortDate - a.data.sortDate).slice(0, 6)
+const recentPosts = (await sortedBlogPosts()).slice(0, 3)
 ---
 
 <Layout title="sKawashima Portfolio">
@@ -24,6 +26,26 @@ const recentWorks = works.sort((a, b) => b.data.sortDate - a.data.sortDate).slic
         <a class="more" href="/works/">View all →</a>
       </div>
       <WorksGrid works={recentWorks} />
+    </div>
+  </section>
+  <section class="digest">
+    <div class="inner">
+      <div class="digest-head">
+        <h2>Blog</h2>
+        <a class="more" href="/blog/">View all →</a>
+      </div>
+      <ul class="blog-list">
+        {
+          recentPosts.map((post) => (
+            <li>
+              <a href={blogPath(post)}>
+                <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+                <span class="post-title">{post.data.title}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
   <Footer />
@@ -102,5 +124,44 @@ const recentWorks = works.sort((a, b) => b.data.sortDate - a.data.sortDate).slic
 
   .more:hover {
     text-decoration: underline;
+  }
+
+  .blog-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .blog-list a {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .blog-list time {
+    flex: 0 0 auto;
+    color: var(--color-text-sub);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .blog-list .post-title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  .blog-list a:hover .post-title {
+    color: var(--color-accent);
+  }
+
+  @media screen and (max-width: 640px) {
+    .blog-list a {
+      flex-direction: column;
+      gap: 2px;
+    }
   }
 </style>

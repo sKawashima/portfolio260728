@@ -16,10 +16,6 @@ tags: ["JavaScript", "npm", "simplemde"]
 
 ---
 
-## 目次
-
-<!-- toc -->
-
 ## npm経由で使おうとした
 
 ```shell

@@ -22,10 +22,6 @@ tags: ["GitHub Actions", "Git", "GitHub", "GitHub Release"]
 
 ---
 
-## 目次
-
-<!-- toc -->
-
 ## 基本的な処理の流れ
 
 基本的な処理の流れは、 **GitHubへのTagのPushを検知→データ加工→Release発行** です。

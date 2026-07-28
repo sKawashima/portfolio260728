@@ -1,0 +1,92 @@
+---
+interface Props {
+  current: number
+  total: number
+}
+
+const { current, total } = Astro.props
+
+const pageUrl = (n: number) => (n === 1 ? '/blog/' : `/blog/page/${n}/`)
+const pages = Array.from({ length: total }, (_, i) => i + 1)
+---
+
+{
+  total > 1 && (
+    <nav class="pagination" aria-label="ページ送り">
+      {current > 1 ? (
+        <a class="nav-link" href={pageUrl(current - 1)}>
+          ← 新しい記事
+        </a>
+      ) : (
+        <span />
+      )}
+      <span class="pages">
+        {pages.map((n) =>
+          n === current ? (
+            <span class="page current" aria-current="page">
+              {n}
+            </span>
+          ) : (
+            <a class="page" href={pageUrl(n)}>
+              {n}
+            </a>
+          ),
+        )}
+      </span>
+      {current < total ? (
+        <a class="nav-link" href={pageUrl(current + 1)}>
+          古い記事 →
+        </a>
+      ) : (
+        <span />
+      )}
+    </nav>
+  )
+}
+
+<style>
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-top: 56px;
+    font-size: 14px;
+  }
+
+  .nav-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .nav-link:hover {
+    text-decoration: underline;
+  }
+
+  .pages {
+    display: flex;
+    gap: 4px;
+  }
+
+  .page {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    color: var(--color-text-sub);
+    text-decoration: none;
+  }
+
+  .page:hover {
+    color: var(--color-accent);
+  }
+
+  .page.current {
+    background: var(--color-chip-bg);
+    color: var(--color-chip-text);
+    font-weight: 700;
+  }
+</style>

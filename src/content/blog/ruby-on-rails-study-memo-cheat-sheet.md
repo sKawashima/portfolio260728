@@ -13,10 +13,6 @@ tags: ["Ruby", "Rails"]
 
 ---
 
-## 目次
-
-<!-- toc -->
-
 ## 主な参考
 
 - [Ruby on Rails 5入門 (全28回) - プログラミングならドットインストール](https://dotinstall.com/lessons/basic_rails_v3)

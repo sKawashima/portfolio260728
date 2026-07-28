@@ -32,10 +32,6 @@ the module (for instance, using `npm rebuild` or `npm install`).
 
 ---
 
-## 目次
-
-<!-- toc -->
-
 ## 本編
 
 注目すべきは、

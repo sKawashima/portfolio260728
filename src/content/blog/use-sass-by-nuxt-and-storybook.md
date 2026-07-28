@@ -13,10 +13,6 @@ Parcelばっかり書いていて、久しぶりのWebpackに戸惑った。
 
 ---
 
-## 目次
-
-<!-- toc -->
-
 ## エラーの経緯
 
 ちゃんと`indentedSyntax`指定しないと`<style lang='sass'>`指定でもエラーが出る。

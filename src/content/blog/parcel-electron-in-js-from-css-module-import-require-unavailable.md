@@ -13,10 +13,6 @@ tags: ["Node.js", "JavaScript", "Electron", "Parcel", "CSS"]
 
 ---
 
-## 目次
-
-<!-- toc -->
-
 ## 前提
 
 ### 1. Webページ制作における通常のParcel

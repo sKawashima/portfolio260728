@@ -17,10 +17,6 @@ ESLintはStandardを使用。
 
 ---
 
-## 目次
-
-<!-- toc -->
-
 ## Tone.js
 
 Web Audio APIを使いやすくするためのライブラリ。

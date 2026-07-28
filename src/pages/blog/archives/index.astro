@@ -1,0 +1,77 @@
+---
+import BlogPageShell from '../../../components/BlogPageShell.astro'
+import { blogPath, blogYearMonth, formatDate, sortedBlogPosts } from '../../../lib/blog'
+
+const posts = await sortedBlogPosts()
+const byYear = new Map<string, typeof posts>()
+for (const post of posts) {
+  const { year } = blogYearMonth(post.data.date)
+  const group = byYear.get(year) ?? []
+  group.push(post)
+  byYear.set(year, group)
+}
+const years = [...byYear.entries()]
+---
+
+<BlogPageShell title="Archives | sKawashima's blog" heading="Archives" lead={`全${posts.length}記事`}>
+  {
+    years.map(([year, yearPosts]) => (
+      <section class="year">
+        <h2>{year}</h2>
+        <ul>
+          {yearPosts.map((post) => (
+            <li>
+              <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              <a href={blogPath(post)}>{post.data.title}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</BlogPageShell>
+
+<style>
+  .year {
+    margin-bottom: 40px;
+  }
+
+  .year h2 {
+    color: var(--color-accent-strong);
+    font-family: var(--font-display-thin);
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+  }
+
+  .year ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .year li {
+    display: flex;
+    gap: 16px;
+    align-items: baseline;
+  }
+
+  .year time {
+    flex: 0 0 auto;
+    color: var(--color-text-sub);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .year a {
+    color: var(--color-text);
+    text-decoration: none;
+    line-height: 1.6;
+  }
+
+  .year a:hover {
+    color: var(--color-accent);
+  }
+</style>

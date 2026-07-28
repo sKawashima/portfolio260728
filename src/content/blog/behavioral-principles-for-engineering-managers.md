@@ -21,10 +21,6 @@ Googleが2008年に始めた「[Project Oxygen](https://rework.withgoogle.com/in
 
 ---
 
-## 目次
-
-<!-- toc -->
-
 ## チームに目標を定義し自律的に動ける権限を与える
 
 チームにはたくさんの人がいて、人の数だけ視点と得意領域がある。

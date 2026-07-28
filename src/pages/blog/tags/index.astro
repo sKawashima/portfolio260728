@@ -1,0 +1,59 @@
+---
+import BlogPageShell from '../../../components/BlogPageShell.astro'
+import { slugifyTerm, sortedBlogPosts } from '../../../lib/blog'
+
+const posts = await sortedBlogPosts()
+const counts = new Map<string, number>()
+for (const post of posts) {
+  for (const tag of post.data.tags) {
+    counts.set(tag, (counts.get(tag) ?? 0) + 1)
+  }
+}
+const tags = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+---
+
+<BlogPageShell title="Tags | sKawashima's blog" heading="Tags">
+  <ul class="tag-list">
+    {
+      tags.map(([tag, count]) => (
+        <li>
+          <a href={`/blog/tags/${slugifyTerm(tag)}/`}>
+            #{tag} <span class="count">{count}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BlogPageShell>
+
+<style>
+  .tag-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .tag-list a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--color-chip-bg);
+    color: var(--color-chip-text);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .tag-list a:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  .count {
+    font-size: 12px;
+    opacity: 0.75;
+  }
+</style>

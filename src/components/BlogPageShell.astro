@@ -1,0 +1,61 @@
+---
+import Footer from './Footer.astro'
+import SiteHeader from './SiteHeader.astro'
+import Layout from '../layouts/Layout.astro'
+
+interface Props {
+  title: string
+  heading: string
+  lead?: string
+}
+
+const { title, heading, lead } = Astro.props
+---
+
+<Layout title={title} description={lead ?? heading}>
+  <SiteHeader />
+  <section class="shell">
+    <div class="inner">
+      <h1 class="heading">{heading}</h1>
+      {lead && <p class="lead">{lead}</p>}
+      <div class="bar"></div>
+      <slot />
+    </div>
+  </section>
+  <Footer />
+</Layout>
+
+<style>
+  .shell {
+    padding: 32px 0 112px;
+  }
+
+  .inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .heading {
+    color: var(--color-accent-strong);
+    font-family: var(--font-display-thin);
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+  }
+
+  .lead {
+    color: var(--color-text-sub);
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .bar {
+    width: 80px;
+    height: 4px;
+    background: var(--color-accent);
+    margin-bottom: 40px;
+  }
+</style>
