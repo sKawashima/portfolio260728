@@ -1,13 +1,22 @@
 {
   "name": "portfolio260728",
+  "type": "module",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "format": "biome check --write --unsafe --no-errors-on-unmatched --files-ignore-unknown=true src/"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "astro": "^5.16.6"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.15",
+    "sass-embedded": "^1.100.0"
+  },
   "packageManager": "pnpm@10.28.0"
 }

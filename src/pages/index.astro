@@ -1,0 +1,57 @@
+---
+import ThemeToggle from '../components/ThemeToggle.astro'
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="sKawashima Portfolio">
+  <header>
+    <ThemeToggle />
+  </header>
+  <section class="hero">
+    <p class="eyebrow">Design · Development · Art</p>
+    <h1>sKawashima's<br />Portfolio</h1>
+    <div class="bar"></div>
+    <p class="lede">デザインと開発とアートの間でざくざくやってます。</p>
+  </section>
+</Layout>
+
+<style>
+  header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 16px 24px;
+  }
+
+  .hero {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+  }
+
+  .eyebrow {
+    color: var(--color-accent);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 12px 0 20px;
+    font-size: clamp(40px, 8vw, 72px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  .bar {
+    width: 120px;
+    height: 4px;
+    background: var(--color-accent);
+  }
+
+  .lede {
+    margin-top: 20px;
+    color: var(--color-text-sub);
+  }
+</style>

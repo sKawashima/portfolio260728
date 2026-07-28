@@ -1,0 +1,79 @@
+---
+import '../styles/tokens.css'
+
+interface Props {
+  title: string
+  description?: string
+}
+
+const { title, description = 'sKawashima Portfolio' } = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+    <title>{title}</title>
+    <script is:inline>
+      // FOUC回避のため、head内でテーマを確定させる
+      const saved = localStorage.getItem('theme')
+      if (saved === 'light' || saved === 'dark') {
+        document.documentElement.dataset.theme = saved
+      }
+    </script>
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: 1.75;
+  }
+
+  body {
+    min-height: 100vh;
+  }
+
+  a {
+    color: var(--color-accent);
+  }
+
+  @font-face {
+    font-family: 'TextaAlt-Thin';
+    src: url(/TextaAlt-Thin-webfont.woff) format('woff');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Texta-Thin';
+    src: url(/Texta-Thin-webfont.woff) format('woff');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Texta-Heavy';
+    src: url(/Texta-Heavy-webfont.woff) format('woff');
+    font-display: swap;
+  }
+</style>

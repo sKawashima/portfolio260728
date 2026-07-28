@@ -1,0 +1,89 @@
+/*
+ * Design tokens — 案A "Violet Evolution"
+ * フラット構成・グラデーション不使用。色は必ずこのトークン経由で参照する。
+ */
+:root {
+  /* ground */
+  --color-bg: #fdfcfe;
+  --color-bg-section: #f6f2fa;
+  --color-card: #ffffff;
+  --color-border: #e8ddf2;
+
+  /* text */
+  --color-text: #2b1140;
+  --color-text-sub: #6d6480;
+
+  /* accent */
+  --color-accent: #8f4eb4;
+  --color-accent-strong: #4e1a68;
+
+  /* ui */
+  --color-chip-bg: #efe4f7;
+  --color-chip-text: #6b3b82;
+  --color-code-bg: #f0eaf6;
+  --color-code-text: #6b3b82;
+
+  /* typography */
+  --font-body:
+    -apple-system, blinkmacsystemfont, "Helvetica Neue", "Segoe UI",
+    "Hiragino Sans", "Noto Sans JP", meiryo, sans-serif;
+  --font-display: "TextaAlt-Thin", var(--font-body);
+  --font-display-heavy: "Texta-Heavy", var(--font-body);
+  --font-mono: ui-monospace, sfmono-regular, menlo, consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #150b1d;
+    --color-bg-section: #1d1226;
+    --color-card: #271733;
+    --color-border: #3c2750;
+
+    --color-text: #f4edfa;
+    --color-text-sub: #a291b8;
+
+    --color-accent: #c9a1e6;
+    --color-accent-strong: #d9bdf0;
+
+    --color-chip-bg: #3c2750;
+    --color-chip-text: #d9bdf0;
+    --color-code-bg: #2b1a3a;
+    --color-code-text: #d9bdf0;
+  }
+}
+
+:root[data-theme="light"] {
+  --color-bg: #fdfcfe;
+  --color-bg-section: #f6f2fa;
+  --color-card: #ffffff;
+  --color-border: #e8ddf2;
+
+  --color-text: #2b1140;
+  --color-text-sub: #6d6480;
+
+  --color-accent: #8f4eb4;
+  --color-accent-strong: #4e1a68;
+
+  --color-chip-bg: #efe4f7;
+  --color-chip-text: #6b3b82;
+  --color-code-bg: #f0eaf6;
+  --color-code-text: #6b3b82;
+}
+
+:root[data-theme="dark"] {
+  --color-bg: #150b1d;
+  --color-bg-section: #1d1226;
+  --color-card: #271733;
+  --color-border: #3c2750;
+
+  --color-text: #f4edfa;
+  --color-text-sub: #a291b8;
+
+  --color-accent: #c9a1e6;
+  --color-accent-strong: #d9bdf0;
+
+  --color-chip-bg: #3c2750;
+  --color-chip-text: #d9bdf0;
+  --color-code-bg: #2b1a3a;
+  --color-code-text: #d9bdf0;
+}
