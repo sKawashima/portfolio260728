@@ -15,7 +15,7 @@ const recentWorks = works.sort((a, b) => b.data.sortDate - a.data.sortDate).slic
   <section class="hero">
     <div class="logo"><SK /></div>
     <p class="eyebrow">Design · Development · Art</p>
-    <h1>sKawashima's<br />Portfolio</h1>
+    <h1>s<span class="b">K</span>awashima's<br />Portfolio</h1>
     <div class="bar"></div>
     <p class="lede">デザインと開発とアートの間でざくざくやってます。</p>
   </section>
@@ -54,10 +54,15 @@ const recentWorks = works.sort((a, b) => b.data.sortDate - a.data.sortDate).slic
 
   h1 {
     margin: 12px 0 20px;
-    font-size: clamp(40px, 8vw, 72px);
-    font-weight: 800;
-    line-height: 1.15;
-    letter-spacing: -0.01em;
+    font-family: var(--font-display);
+    font-size: clamp(44px, 8vw, 76px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+  }
+
+  h1 .b {
+    font-family: var(--font-display-heavy);
   }
 
   .bar {
@@ -90,9 +95,10 @@ const recentWorks = works.sort((a, b) => b.data.sortDate - a.data.sortDate).slic
 
   .digest-head h2 {
     color: var(--color-accent-strong);
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+    font-family: var(--font-display-thin);
+    font-size: 36px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
   }
 
   .more {
