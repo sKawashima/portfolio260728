@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content'
 import Footer from '../components/Footer.astro'
 import SiteHeader from '../components/SiteHeader.astro'
-import SK from '../components/SK.astro'
 import WorksGrid from '../components/WorksGrid.astro'
 import Layout from '../layouts/Layout.astro'
 
@@ -13,7 +12,6 @@ const recentWorks = works.sort((a, b) => b.data.sortDate - a.data.sortDate).slic
 <Layout title="sKawashima Portfolio">
   <SiteHeader />
   <section class="hero">
-    <div class="logo"><SK /></div>
     <p class="eyebrow">Design · Development · Art</p>
     <h1>s<span class="b">K</span>awashima's<br />Portfolio</h1>
     <div class="bar"></div>
@@ -35,13 +33,7 @@ const recentWorks = works.sort((a, b) => b.data.sortDate - a.data.sortDate).slic
   .hero {
     max-width: 1040px;
     margin: 0 auto;
-    padding: 48px 24px 80px;
-  }
-
-  .logo {
-    width: 72px;
-    height: 82px;
-    margin-bottom: 24px;
+    padding: 64px 24px 80px;
   }
 
   .eyebrow {

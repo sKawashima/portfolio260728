@@ -1,11 +1,9 @@
 ---
-import SK from './SK.astro'
 import ThemeToggle from './ThemeToggle.astro'
 ---
 
 <header>
   <a class="brand" href="/">
-    <span class="logo"><SK /></span>
     <span class="name">sKawashima</span>
   </a>
   <div class="right">
@@ -30,19 +28,12 @@ import ThemeToggle from './ThemeToggle.astro'
   .brand {
     display: flex;
     align-items: center;
-    gap: 10px;
     color: var(--color-text);
     text-decoration: none;
   }
 
   .brand:hover .name {
     color: var(--color-accent);
-  }
-
-  .logo {
-    width: 22px;
-    height: 25px;
-    display: block;
   }
 
   .name {
