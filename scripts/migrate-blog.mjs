@@ -18,6 +18,7 @@ import {
   mkdirSync,
   readdirSync,
   readFileSync,
+  rmSync,
   writeFileSync,
 } from 'node:fs'
 import { basename, join } from 'node:path'
@@ -87,6 +88,9 @@ for (const file of files) {
 }
 
 // 2nd pass: 本文変換と書き出し
+// 移行元で削除・改名された記事の生成物が残らないよう、出力先を作り直す
+rmSync(DEST, { recursive: true, force: true })
+rmSync(ASSET_DEST, { recursive: true, force: true })
 mkdirSync(DEST, { recursive: true })
 let assetDirs = 0
 const warnings = []
