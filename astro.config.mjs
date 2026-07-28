@@ -5,6 +5,17 @@ import remarkLinkCard from './src/lib/remark-link-card.mjs'
 export default defineConfig({
   site: 'https://skawashima.com',
   base: '/',
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          // 動的ルート([...path]等)由来のアセット名に「..」が含まれると
+          // FTPサーバーのパストラバーサル対策で550エラーになるため、ハッシュのみにする
+          assetFileNames: '_astro/[hash][extname]',
+        },
+      },
+    },
+  },
   markdown: {
     remarkPlugins: [remarkCodeTitle, remarkLinkCard],
     shikiConfig: {
