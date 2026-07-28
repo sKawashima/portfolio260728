@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content'
+import WorkItem from './WorkItem.astro'
+
+const works = await getCollection('works')
+const sortedWorks = works.sort((a, b) => b.data.sortDate - a.data.sortDate)
+---
+
+<section id="works" class="works">
+  <div class="inner">
+    <h2 class="heading">Works</h2>
+    <div class="grid">
+      {sortedWorks.map((work) => <WorkItem work={work} />)}
+    </div>
+  </div>
+</section>
+
+<style>
+  .works {
+    background: var(--color-bg-section);
+    padding: 64px 24px 96px;
+  }
+
+  .inner {
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  .heading {
+    color: var(--color-accent-strong);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 32px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  @media screen and (max-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

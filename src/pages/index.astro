@@ -1,5 +1,8 @@
 ---
+import Footer from '../components/Footer.astro'
+import SK from '../components/SK.astro'
 import ThemeToggle from '../components/ThemeToggle.astro'
+import Works from '../components/Works.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
@@ -8,11 +11,14 @@ import Layout from '../layouts/Layout.astro'
     <ThemeToggle />
   </header>
   <section class="hero">
+    <div class="logo"><SK /></div>
     <p class="eyebrow">Design · Development · Art</p>
     <h1>sKawashima's<br />Portfolio</h1>
     <div class="bar"></div>
     <p class="lede">デザインと開発とアートの間でざくざくやってます。</p>
   </section>
+  <Works />
+  <Footer />
 </Layout>
 
 <style>
@@ -23,9 +29,15 @@ import Layout from '../layouts/Layout.astro'
   }
 
   .hero {
-    max-width: 960px;
+    max-width: 1040px;
     margin: 0 auto;
-    padding: 64px 24px 96px;
+    padding: 48px 24px 80px;
+  }
+
+  .logo {
+    width: 72px;
+    height: 82px;
+    margin-bottom: 24px;
   }
 
   .eyebrow {

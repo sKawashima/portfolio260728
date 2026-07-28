@@ -1,0 +1,175 @@
+---
+import { render } from 'astro:content'
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+  work: CollectionEntry<'works'>
+}
+
+const { work } = Astro.props
+const {
+  title,
+  genres,
+  activity,
+  memberCount,
+  role,
+  period,
+  date,
+  technologies,
+  thumbnail,
+  youtubeId,
+  link,
+} = work.data
+const { Content } = await render(work)
+
+const details = [
+  ['活動', activity],
+  ['活動人数', memberCount],
+  ['担当', role],
+  ['制作期間', period],
+  ['制作時期', date],
+  ['使用技術', technologies],
+]
+---
+
+<article class="card">
+  {
+    youtubeId ? (
+      <div class="thumb-wrap">
+        <iframe
+          class="thumb-youtube"
+          src={`https://www.youtube.com/embed/${youtubeId}?rel=0`}
+          title={title}
+          loading="lazy"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+        />
+      </div>
+    ) : thumbnail ? (
+      <div class="thumb-wrap">
+        <img class="thumb" src={thumbnail} alt={title} loading="lazy" />
+      </div>
+    ) : null
+  }
+  <div class="body">
+    <div class="chips">
+      {genres.map((genre) => <span class="chip">{genre.name}</span>)}
+    </div>
+    <h3 class="title">
+      {
+        link ? (
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            {title}
+          </a>
+        ) : (
+          title
+        )
+      }
+    </h3>
+    <dl class="details">
+      {
+        details.map(([label, value]) => (
+          <>
+            <dt>{label}</dt>
+            <dd>{value}</dd>
+          </>
+        ))
+      }
+    </dl>
+    <div class="summary">
+      <Content />
+    </div>
+  </div>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .thumb-wrap {
+    aspect-ratio: 16 / 10;
+    background: var(--color-bg-section);
+  }
+
+  .thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .thumb-youtube {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+  }
+
+  .chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .chip {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: var(--color-chip-bg);
+    color: var(--color-chip-text);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .title a:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+  }
+
+  .details {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2px 12px;
+    font-size: 12.5px;
+  }
+
+  .details dt {
+    color: var(--color-text-sub);
+    text-align: right;
+  }
+
+  .details dd {
+    margin: 0;
+  }
+
+  .summary {
+    font-size: 13.5px;
+    color: var(--color-text-sub);
+    line-height: 1.8;
+  }
+</style>
