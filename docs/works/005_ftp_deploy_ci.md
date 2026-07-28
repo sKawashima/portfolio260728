@@ -13,7 +13,7 @@ Issue: #5
 ## 判断
 
 - **FTP-Deploy-Action を採用**: 旧 `deploy.js`(ftp-deploy + .env のローカル手動実行)を置き換え。sync-state ファイル(`.ftp-deploy-sync-state.json`)による差分アップロードで、毎回全ファイルを送らない
-- **サーバー上の既存ファイルは削除しない**: dangerous-clean-slate は使わず、アクションが管理していない既存ファイル(旧サイトの残置物等)には触れない
+- **アクション管理外の既存ファイルは保持**: dangerous-clean-slate は使わず、アクションが管理していない既存ファイル(旧サイトの残置物等)には触れない。ただしアクションが一度デプロイしたファイルを `dist/` から削除した場合は、sync-state に基づきサーバーからも削除される(通常の同期挙動)
 - **アップロード先はサイトルート** `/skawashima.com/`(旧ブログは `/skawashima.com/blog/` のみだったが、統合後はポートフォリオ+ブログ全体を配置)
 - build ジョブと deploy ジョブを分離し、artifact 経由で受け渡し(PR時はアップロードもスキップ)
 

@@ -5,7 +5,7 @@ sKawashima のポートフォリオ + ブログの統合サイト。Astro 7 の�
 - `/` — ポートフォリオ(ハブ)
 - `/works/` — 作品・活動一覧(`src/content/works/*.md` を追加すると増える)
 - `/blog/` — ブログ(`src/content/blog/*.md` を追加すると増える。記事URLは `/blog/:year/:month/:slug/`)
-- `/blog/atom.xml` — RSSフィード
+- `/blog/atom.xml` — フィード(形式は RSS 2.0。旧サイトのフィードURL互換のためパスは `atom.xml` を維持)
 
 旧リポジトリ(portfolio180104 / blog)からの移行経緯や設計判断は `docs/works/` の作業ログと [Issue #6](https://github.com/sKawashima/portfolio260728/issues/6) を参照。
 
@@ -30,7 +30,7 @@ pnpm format   # Biome によるlint/format
 
 `main` ブランチへの push で GitHub Actions(`.github/workflows/deploy.yml`)が起動し、ビルド成果物をレンタルサーバーの `/skawashima.com/` へ FTP アップロードする。PR ではビルド検証のみ実行される。
 
-サーバー上の既存ファイルは削除しない(差分アップロードのみ)。
+デプロイは sync-state による差分同期で行う。**アクションの管理外にあるサーバー上の既存ファイル(旧サイトの残置物など)は保持される**が、一度デプロイしたファイルを `dist/` から削除した場合は同期時にサーバーからも削除される。
 
 ### 必要な Secrets
 
