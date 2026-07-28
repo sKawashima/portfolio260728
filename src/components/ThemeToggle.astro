@@ -34,6 +34,17 @@
   :global([data-theme='dark']) .icon-dark {
     display: inline;
   }
+
+  /* テーマ未保存時はOS設定に追従してアイコンを切り替える */
+  @media (prefers-color-scheme: dark) {
+    :global(html:not([data-theme])) .icon-light {
+      display: none;
+    }
+
+    :global(html:not([data-theme])) .icon-dark {
+      display: inline;
+    }
+  }
 </style>
 
 <script>

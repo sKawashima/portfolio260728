@@ -25,6 +25,16 @@ Issue: #1
 - `pnpm install` 時に esbuild / sharp の build script が ignore されている(`pnpm approve-builds` 未実施)。現状ビルドは通るが、画像最適化(sharp)を使う際に対応が必要
 - フォントライセンスの確認は旧サイト運用を踏襲(新規配布はしていない)
 
+## レビュー対応(PR #9)
+
+CodeRabbit の指摘に対応:
+
+- ThemeToggle: テーマ未保存+OSダーク時にアイコンが切り替わらない問題を修正(`html:not([data-theme])` + `prefers-color-scheme` のCSSで対応)
+- favicon の MIME type を `image/x-icon` に修正
+- フォント名の小文字化(Stylelint `value-keyword-case` 対応。フォント名は大文字小文字を区別しないため挙動不変)
+- `og:url` を追加(`Astro.url` + `Astro.site` から絶対URLを生成)
+- `is:inline` 除去の提案は不採用(FOUC回避のためhead内同期実行が必須。除去するとAstroがmodule化・遅延実行してテーマ適用が初回描画後になる)
+
 ## 次のステップ
 
 - #2 ポートフォリオの移行と新デザイン実装

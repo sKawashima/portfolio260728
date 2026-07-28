@@ -25,11 +25,11 @@
 
   /* typography */
   --font-body:
-    -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI",
-    "Hiragino Sans", "Noto Sans JP", Meiryo, sans-serif;
+    -apple-system, blinkmacsystemfont, "Helvetica Neue", "Segoe UI",
+    "Hiragino Sans", "Noto Sans JP", meiryo, sans-serif;
   --font-display: "TextaAlt-Thin", var(--font-body);
   --font-display-heavy: "Texta-Heavy", var(--font-body);
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-mono: ui-monospace, sfmono-regular, menlo, consolas, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
