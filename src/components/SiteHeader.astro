@@ -1,0 +1,67 @@
+---
+import ThemeToggle from './ThemeToggle.astro'
+---
+
+<header>
+  <a class="brand" href="/">
+    <span class="name">sKawashima</span>
+  </a>
+  <div class="right">
+    <nav>
+      <a href="/works/">Works</a>
+      <a href="/blog/">Blog</a>
+    </nav>
+    <ThemeToggle />
+  </div>
+</header>
+
+<style>
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 16px 24px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .brand:hover .name {
+    color: var(--color-accent);
+  }
+
+  .name {
+    font-family: var(--font-display-heavy);
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  nav {
+    display: flex;
+    gap: 20px;
+  }
+
+  nav a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  nav a:hover {
+    color: var(--color-accent);
+  }
+</style>

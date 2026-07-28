@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import WorkItem from './WorkItem.astro'
+
+interface Props {
+  works: CollectionEntry<'works'>[]
+}
+
+const { works } = Astro.props
+---
+
+<div class="grid">
+  {works.map((work) => <WorkItem work={work} />)}
+</div>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 28px;
+    align-items: start;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

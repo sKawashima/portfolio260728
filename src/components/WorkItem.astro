@@ -1,0 +1,98 @@
+---
+import type { CollectionEntry } from 'astro:content'
+
+interface Props {
+  work: CollectionEntry<'works'>
+}
+
+const { work } = Astro.props
+const { title, genres, thumbnail, youtubeId } = work.data
+
+// YouTube作品はサムネ未指定のときYouTube提供画像を使う(4:3のため中央トリミング)
+const thumbSrc =
+  thumbnail ?? (youtubeId ? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg` : undefined)
+const thumbPosition = thumbnail ? 'top' : 'center'
+---
+
+<a class="card" href={`/works/${work.id}/`}>
+  {
+    thumbSrc && (
+      <div class="thumb-wrap">
+        <img class="thumb" src={thumbSrc} alt="" style={`object-position: ${thumbPosition};`} loading="lazy" />
+      </div>
+    )
+  }
+  <div class="body">
+    <h3 class="title">{title}</h3>
+    <div class="chips">
+      {genres.map((genre) => <span class="chip">{genre.name}</span>)}
+    </div>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .card:hover .title {
+    color: var(--color-accent);
+  }
+
+  .card:hover .thumb {
+    opacity: 0.85;
+  }
+
+  .card:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+
+  .thumb-wrap {
+    aspect-ratio: 16 / 9;
+    background: var(--color-bg-section);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.15s ease;
+  }
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .chip {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: var(--color-chip-bg);
+    color: var(--color-chip-text);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+</style>
