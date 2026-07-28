@@ -1,0 +1,46 @@
+---
+import BlogPageShell from '../../../components/BlogPageShell.astro'
+import PostList from '../../../components/PostList.astro'
+import { slugifyTerm, sortedBlogPosts } from '../../../lib/blog'
+
+export async function getStaticPaths() {
+  const posts = await sortedBlogPosts()
+  const byCategory = new Map<string, { name: string; posts: typeof posts }>()
+  for (const post of posts) {
+    const category = post.data.category
+    if (!category) continue
+    const slug = slugifyTerm(category)
+    const group = byCategory.get(slug) ?? { name: category, posts: [] }
+    group.posts.push(post)
+    byCategory.set(slug, group)
+  }
+  return [...byCategory.entries()].map(([slug, group]) => ({
+    params: { category: slug },
+    props: { name: group.name, posts: group.posts },
+  }))
+}
+
+const { name, posts } = Astro.props
+---
+
+<BlogPageShell title={`${name} | sKawashima's blog`} heading={name} lead={`${posts.length}件の記事`}>
+  <PostList posts={posts} />
+  <p class="back"><a href="/blog/">← Blog トップ</a></p>
+</BlogPageShell>
+
+<style>
+  .back {
+    margin-top: 48px;
+    font-size: 14px;
+  }
+
+  .back a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .back a:hover {
+    text-decoration: underline;
+  }
+</style>

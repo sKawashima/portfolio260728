@@ -16,10 +16,6 @@ push する前に、手元で挙動を確認できる。
 
 ---
 
-## 目次
-
-<!-- toc -->
-
 ## act とは
 
 `act` は `.github/workflows/` の yml を読み込み、Docker コンテナ上で GitHub ランナーを再現してワークフローを実行する CLI。

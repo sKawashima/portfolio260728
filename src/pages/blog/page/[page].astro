@@ -1,0 +1,29 @@
+---
+import BlogPageShell from '../../../components/BlogPageShell.astro'
+import Pagination from '../../../components/Pagination.astro'
+import PostList from '../../../components/PostList.astro'
+import { PER_PAGE, sortedBlogPosts } from '../../../lib/blog'
+
+export async function getStaticPaths() {
+  const posts = await sortedBlogPosts()
+  const totalPages = Math.ceil(posts.length / PER_PAGE)
+  return Array.from({ length: totalPages - 1 }, (_, i) => {
+    const page = i + 2
+    return {
+      params: { page: String(page) },
+      props: {
+        posts: posts.slice((page - 1) * PER_PAGE, page * PER_PAGE),
+        page,
+        totalPages,
+      },
+    }
+  })
+}
+
+const { posts, page, totalPages } = Astro.props
+---
+
+<BlogPageShell title={`Blog - Page ${page} | sKawashima's blog`} heading="Blog" lead={`Page ${page} / ${totalPages}`}>
+  <PostList posts={posts} />
+  <Pagination current={page} total={totalPages} />
+</BlogPageShell>

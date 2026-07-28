@@ -27,9 +27,6 @@ tags: ["Planning proposal", "UI/UX Design", "SPAJAM2018", "'!kie'"]
 
 ---
 
-## 目次
-<!-- toc -->
-
 ## 自分がやったことのまとめ
 
 語る前に、僕が何を成したのかを並べようと思います。

@@ -15,10 +15,6 @@ tags: ["hyperapp", "Marked", "highlight.js", "Parcel", "JavaScript"]
 
 ---
 
-## 目次
-
-<!-- toc -->
-
 ### 基本情報
 
 - Parcelとは

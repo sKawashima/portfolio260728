@@ -1,0 +1,38 @@
+---
+import BlogPageShell from '../../components/BlogPageShell.astro'
+import Pagination from '../../components/Pagination.astro'
+import PostList from '../../components/PostList.astro'
+import { PER_PAGE, sortedBlogPosts } from '../../lib/blog'
+
+const posts = await sortedBlogPosts()
+const totalPages = Math.ceil(posts.length / PER_PAGE)
+---
+
+<BlogPageShell title="sKawashima's blog" heading="Blog" lead="デザインと開発とアートの間でざくざくやってます。">
+  <nav class="sub-nav">
+    <a href="/blog/tags/">Tags</a>
+    <a href="/blog/archives/">Archives</a>
+    <a href="/blog/atom.xml">RSS</a>
+  </nav>
+  <PostList posts={posts.slice(0, PER_PAGE)} />
+  <Pagination current={1} total={totalPages} />
+</BlogPageShell>
+
+<style>
+  .sub-nav {
+    display: flex;
+    gap: 20px;
+    margin: -24px 0 40px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .sub-nav a {
+    color: var(--color-text-sub);
+    text-decoration: none;
+  }
+
+  .sub-nav a:hover {
+    color: var(--color-accent);
+  }
+</style>
