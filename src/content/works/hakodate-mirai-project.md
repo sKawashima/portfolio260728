@@ -10,7 +10,7 @@ period: "3months"
 date: "2016年12月"
 sortDate: "2016-12-01"
 technologies: "Illustrator / HTML,Sass / PHP / WordPress"
-thumbnail: "/hmp.png"
+thumbnail: "./images/hmp.png"
 ---
 
 運営コンソーシアムより依頼され制作。

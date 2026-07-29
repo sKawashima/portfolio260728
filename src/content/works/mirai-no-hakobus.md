@@ -12,7 +12,7 @@ period: "1weeks"
 date: "2015年12月"
 sortDate: "2015-12-01"
 technologies: "Illustrator / HTML,SCSS / AviUtl / Ableton Live"
-thumbnail: "/mirainohakobasu.png"
+thumbnail: "./images/mirainohakobasu.png"
 link: "http://funifd.com/exhibition/ucd2015/"
 ---
 

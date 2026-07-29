@@ -11,7 +11,7 @@ period: "1week"
 date: "2018年1月"
 sortDate: "2018-01-01"
 technologies: "Nuxt / Vue / Pug / Sass / JavaScript"
-thumbnail: "/personality.png"
+thumbnail: "./images/personality.png"
 ---
 
 髪型が隠れた人の写真を重ねれば、個性のない顔が生まれるんじゃないか。

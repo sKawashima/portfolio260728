@@ -10,7 +10,7 @@ period: "1day"
 date: "2017年12月"
 sortDate: "2017-12-01"
 technologies: "Photoshop"
-thumbnail: "/mahounoyuenchi.png"
+thumbnail: "./images/mahounoyuenchi.png"
 ---
 
 はこだてみらい館運営コンソーシアムより依頼を受けて制作。

@@ -11,7 +11,7 @@ period: "1day"
 date: "2018年9月~"
 sortDate: "2018-09-01"
 technologies: "Nuxt / Vue / Pug / Sass / JavaScript"
-thumbnail: "/trinity-trio.png"
+thumbnail: "./images/trinity-trio.png"
 link: "https://trinity-trio.github.io/web/"
 ---
 

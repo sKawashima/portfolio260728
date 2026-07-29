@@ -10,7 +10,7 @@ period: "6month"
 date: "2018年1月~"
 sortDate: "2018-01-01"
 technologies: "Parcel / Pug / Sass / JavaScript"
-thumbnail: "/web-miraibase.png"
+thumbnail: "./images/web-miraibase.png"
 link: "https://miraibase.jp/"
 ---
 
