@@ -11,7 +11,10 @@ const recentWorks = works.sort((a, b) => b.data.sortDate - a.data.sortDate).slic
 const recentPosts = (await sortedBlogPosts()).slice(0, 5)
 ---
 
-<Layout title="sKawashima Portfolio">
+<Layout
+  title="sKawashima Portfolio"
+  description="デザインと開発とアートの間でざくざくやってます。sKawashimaのポートフォリオサイト。"
+>
   <SiteHeader />
   <section class="hero">
     <p class="eyebrow">Design · Development · Art</p>
