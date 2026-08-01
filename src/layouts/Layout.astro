@@ -15,7 +15,9 @@ const { title, description = 'sKawashima Portfolio' } = Astro.props
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" href="/TextaAlt-Thin-webfont.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="/Texta-Thin-webfont.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="/Texta-Heavy-webfont.woff" as="font" type="font/woff" crossorigin />
@@ -24,6 +26,9 @@ const { title, description = 'sKawashima Portfolio' } = Astro.props
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site)} />
+    <meta property="og:site_name" content="sKawashima Portfolio" />
+    <meta property="og:image" content={new URL('/ogp.png', Astro.site)} />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
     <script is:inline>
       // FOUC回避のため、head内でテーマを確定させる
