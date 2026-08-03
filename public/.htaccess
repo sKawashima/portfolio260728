@@ -1,6 +1,9 @@
 # 静的アセットのキャッシュ設定(Apache)
 # フォント・ハッシュ付きアセットは長期、画像は中期、HTMLは短期でキャッシュする
 
+# カスタム404(サーバー既定の ErrorDocument が存在しないパスを指しているため明示する)
+ErrorDocument 404 /404.html
+
 <IfModule mod_mime.c>
   AddType font/woff .woff
   AddType font/woff2 .woff2
