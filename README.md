@@ -33,8 +33,8 @@ pnpm format   # Biome によるlint/format
 
 ## コンテンツの追加
 
-- **作品**: `src/content/works/` にMDファイルを追加(スキーマは `src/content.config.ts`)。front-matter は `title` / `genres` / `activity` / `memberCount` / `role` / `period` / `date` / `sortDate` / `technologies` と、任意の `thumbnail` / `youtubeId` / `link`
-- **ブログ記事**: `src/content/blog/` にMDファイルを追加。front-matter は `title` / `date`(ISO 8601)/ `category` / `tags`
+- **作品**: `src/content/works/` にMDファイルを追加(スキーマは `src/content.config.ts`)。front-matter は `title` / `genres`(`{ name, type }` の配列)/ `activity` / `memberCount` / `role` / `period` / `date` / `sortDate` / `technologies` が必須で、`thumbnail` / `youtubeId` / `link` は任意
+- **ブログ記事**: `src/content/blog/` にMDファイルを追加。front-matter は `title` / `date`(日付として解釈できる文字列)が必須で、`category`(任意)/ `tags`(未指定時は `[]`)
   - コードフェンスは ```` ```lang title="キャプション" ```` でタイトル付き表示
   - URLだけの行はリンクカードとして表示される
 - 記事に画像を使う場合は `public/blog/<year>/<month>/<slug>/` に配置する
