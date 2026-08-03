@@ -25,6 +25,14 @@ const works = defineCollection({
     }),
 })
 
+const about = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/about' }),
+  schema: z.object({
+    title: z.string(),
+    lead: z.string().optional(),
+  }),
+})
+
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
@@ -38,4 +46,5 @@ const blog = defineCollection({
 export const collections = {
   works,
   blog,
+  about,
 }
