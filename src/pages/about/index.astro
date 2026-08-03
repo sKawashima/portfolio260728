@@ -1,0 +1,59 @@
+---
+import { getEntry, render } from 'astro:content'
+import BlogPageShell from '../../components/BlogPageShell.astro'
+
+const about = await getEntry('about', 'index')
+if (!about) {
+  throw new Error('src/content/about/index.md が見つかりません')
+}
+const { title, lead } = about.data
+const { Content } = await render(about)
+---
+
+<BlogPageShell title={`${title} | sKawashima Portfolio`} heading={title} lead={lead}>
+  <div class="body">
+    <Content />
+  </div>
+</BlogPageShell>
+
+<style>
+  .body {
+    line-height: 1.9;
+  }
+
+  .body :global(h2) {
+    margin: 48px 0 16px;
+    padding-left: 12px;
+    border-left: 4px solid var(--color-accent);
+    font-size: 22px;
+    line-height: 1.5;
+  }
+
+  .body :global(h3) {
+    margin: 36px 0 12px;
+    font-size: 19px;
+    line-height: 1.5;
+  }
+
+  .body :global(p) {
+    margin: 0 0 1.2em;
+  }
+
+  .body :global(ul),
+  .body :global(ol) {
+    margin: 0 0 1.2em;
+    padding-left: 1.6em;
+  }
+
+  .body :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  .body :global(hr) {
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    margin: 40px 0;
+  }
+</style>
