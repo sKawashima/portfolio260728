@@ -23,6 +23,10 @@
   --color-code-bg: #f0eaf6;
   --color-code-text: #6b3b82;
 
+  /* layout */
+  --width-site: 1400px; /* ワイド系コンテナ(ヘッダー・一覧・トップ) */
+  --width-prose: 720px; /* 記事本文(行長45〜75字の可読性を優先) */
+
   /* typography */
   --font-body:
     -apple-system, blinkmacsystemfont, "Helvetica Neue", "Segoe UI",

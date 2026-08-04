@@ -16,15 +16,10 @@ const { works } = Astro.props
 <style>
   .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* 横幅に応じてカラム数を自動増減(auto-fit なので件数が少なくても空きトラックが出ない) */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px 28px;
     align-items: start;
-  }
-
-  @media screen and (max-width: 1024px) {
-    .grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
   }
 
   @media screen and (max-width: 640px) {
