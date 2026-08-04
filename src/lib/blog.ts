@@ -45,6 +45,35 @@ export function slugifyTerm(name: string) {
     .replace(/^-+|-+$/g, '')
 }
 
+// タグごとの記事数。件数降順(同数は名前順)
+export function tagCounts(posts: CollectionEntry<'blog'>[]) {
+  const counts = new Map<string, number>()
+  for (const post of posts) {
+    for (const tag of post.data.tags) {
+      counts.set(tag, (counts.get(tag) ?? 0) + 1)
+    }
+  }
+  return [...counts.entries()].sort(
+    (a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
+  )
+}
+
+// カテゴリごとの記事数。件数降順(同数は名前順)
+export function categoryCounts(posts: CollectionEntry<'blog'>[]) {
+  const byCategory = new Map<string, { name: string; count: number }>()
+  for (const post of posts) {
+    const category = post.data.category
+    if (!category) continue
+    const slug = slugifyTerm(category)
+    const current = byCategory.get(slug) ?? { name: category, count: 0 }
+    current.count += 1
+    byCategory.set(slug, current)
+  }
+  return [...byCategory.entries()]
+    .map(([slug, { name, count }]) => ({ slug, name, count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
+}
+
 // 一覧用の抜粋。<!-- more --> より前の本文からMarkdown記法を落として先頭を返す
 export function excerptOf(entry: CollectionEntry<'blog'>, length = 120) {
   const source = (entry.body ?? '').split('<!-- more -->')[0]

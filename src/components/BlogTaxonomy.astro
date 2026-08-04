@@ -1,0 +1,111 @@
+---
+import { categoryCounts, slugifyTerm, sortedBlogPosts, tagCounts } from '../lib/blog'
+
+const posts = await sortedBlogPosts()
+const categories = categoryCounts(posts)
+const tags = tagCounts(posts)
+---
+
+<aside class="taxonomy">
+  {
+    categories.length > 0 && (
+      <section>
+        <h2 class="label">Categories</h2>
+        <ul class="categories">
+          {categories.map((category) => (
+            <li>
+              <a href={`/blog/categories/${category.slug}/`}>
+                {category.name} <span class="count">{category.count}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+  {
+    tags.length > 0 && (
+      <section>
+        <h2 class="label">Tags</h2>
+        <ul class="tags">
+          {tags.map(([tag, count]) => (
+            <li>
+              <a href={`/blog/tags/${slugifyTerm(tag)}/`}>
+                #{tag} <span class="count">{count}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</aside>
+
+<style>
+  .taxonomy {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .label {
+    color: var(--color-accent-strong);
+    font-family: var(--font-display-thin);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+  }
+
+  .categories,
+  .tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .categories a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1px solid var(--color-accent);
+    border-radius: 999px;
+    color: var(--color-accent);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .categories a:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  .tags a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--color-chip-bg);
+    color: var(--color-chip-text);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .tags a:hover {
+    background: var(--color-accent);
+    color: var(--color-bg);
+  }
+
+  .count {
+    font-size: 12px;
+    opacity: 0.75;
+  }
+</style>
