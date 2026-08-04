@@ -1,5 +1,6 @@
 ---
 import BlogPageShell from '../../../components/BlogPageShell.astro'
+import BlogTaxonomy from '../../../components/BlogTaxonomy.astro'
 import Pagination from '../../../components/Pagination.astro'
 import PostList from '../../../components/PostList.astro'
 import { PER_PAGE, sortedBlogPosts } from '../../../lib/blog'
@@ -26,4 +27,5 @@ const { posts, page, totalPages } = Astro.props
 <BlogPageShell title={`Blog - Page ${page} | sKawashima's blog`} heading="Blog" lead={`Page ${page} / ${totalPages}`}>
   <PostList posts={posts} />
   <Pagination current={page} total={totalPages} />
+  <BlogTaxonomy />
 </BlogPageShell>

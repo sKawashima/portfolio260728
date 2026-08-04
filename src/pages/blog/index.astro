@@ -1,5 +1,6 @@
 ---
 import BlogPageShell from '../../components/BlogPageShell.astro'
+import BlogTaxonomy from '../../components/BlogTaxonomy.astro'
 import Pagination from '../../components/Pagination.astro'
 import PostList from '../../components/PostList.astro'
 import { PER_PAGE, sortedBlogPosts } from '../../lib/blog'
@@ -16,6 +17,7 @@ const totalPages = Math.ceil(posts.length / PER_PAGE)
   </nav>
   <PostList posts={posts.slice(0, PER_PAGE)} />
   <Pagination current={1} total={totalPages} />
+  <BlogTaxonomy />
 </BlogPageShell>
 
 <style>
