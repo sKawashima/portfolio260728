@@ -44,12 +44,18 @@ jobs:
           # permissionMode は default なので、Skill を明示許可しないと
           # /code-review:code-review 自体が user-rejected で弾かれる。
           # --allowedTools は追加ではなく厳格なホワイトリストとして効くため、
-          # プラグインが投稿・差分取得に使う gh / git も併せて列挙する。
-          # Read / Grep などの読み取り専用ツールは既定で許可されるので不要
+          # プラグインが使うツールを漏れなく列挙する:
+          #   - gh / git      : 差分取得と投稿
+          #   - TaskOutput/List: バックグラウンドのレビューエージェントの結果回収
+          #   - node          : 指摘の裏取り(正規表現を実データで実行して検証する等)
+          # Read / Grep などの読み取り専用ツールは既定で許可されるので不要。
+          #
+          # --append-system-prompt が無いと、プラグインが起動したレビューエージェントの
+          # 完了通知を待つと言ってモデルがターンを終え、headless なのでその時点で
+          # セッションごとレビューが破棄される
           claude_args: |
-            --allowedTools "Skill,Bash(gh:*),Bash(git:*),mcp__github_inline_comment__create_inline_comment"
-          # TODO(#45): 診断用。投稿が確認できたら必ず削除する
-          show_full_output: true
+            --allowedTools "Skill,Bash(gh:*),Bash(git:*),Bash(node:*),TaskOutput,TaskList,mcp__github_inline_comment__create_inline_comment"
+            --append-system-prompt "You are running headless in CI. The session ends the instant you reply without making a tool call, and any unfinished work is discarded. Therefore: never end your turn while background agents are still running. Do not say you will wait for notifications - no notification will ever arrive. Instead, poll with TaskOutput repeatedly until every background agent has finished, gather their findings, and post the review to GitHub. Only stop once the comments are actually posted."
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://code.claude.com/docs/en/cli-reference for available options
 
