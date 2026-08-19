@@ -74,9 +74,12 @@ export function categoryCounts(posts: CollectionEntry<'blog'>[]) {
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
 }
 
-// 本文中のブログ内リンク。相対パス `/blog/YYYY/MM/slug/` と旧ドメインの絶対URLの両方にマッチする。
+// 本文中のブログ内リンク。相対パス `/blog/YYYY/MM/slug/` と旧ドメインの絶対URLだけにマッチする。
+// 先頭の境界でホストを検証しないと、外部サイトの同形式URL(`https://example.com/blog/2024/01/slug/`)の
+// slugがローカル記事のidと衝突したときに、参照していない記事を参照扱いしてしまう。
 // 画像パス(`/blog/YYYY/MM/slug/foo.png`)はスラッシュの後ろにセグメントが続くため、末尾の先読みで弾かれる
-const BLOG_LINK_PATTERN = /\/blog\/\d{4}\/\d{2}\/([\w.-]+)\/?(?=[)\s"'#?]|$)/g
+const BLOG_LINK_PATTERN =
+  /(?:^|[\s("'])(?:https?:\/\/(?:www\.)?skawashima\.com)?\/blog\/\d{4}\/\d{2}\/([\w.-]+)\/?(?=[)\s"'#?]|$)/gm
 
 // 本文中でリンクしている記事を出現順に返す(重複と自己参照は除く)
 export function referencedPosts(
