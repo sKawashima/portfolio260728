@@ -1,6 +1,7 @@
 ---
 name: create-pr
 description: 適切にブランチを切ってcommitし、ghコマンドでPRを作成する。作成後はレビュー対応ループを開始する。
+disable-model-invocation: true
 ---
 
 適切にブランチを切る
