@@ -1,3 +1,10 @@
+---
+name: handle-review
+description: PRのレビューコメントを確認し、対応方針をユーザーに提示してから実装する。
+argument-hint: "[PR番号]"
+disable-model-invocation: true
+---
+
 PRのレビューコメントを確認し、対応方針をユーザーに提示してから実装する。
 
 ## 引数
