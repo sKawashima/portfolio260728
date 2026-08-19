@@ -74,6 +74,58 @@ export function categoryCounts(posts: CollectionEntry<'blog'>[]) {
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
 }
 
+// 本文中のブログ内リンク。相対パス `/blog/YYYY/MM/slug/` と旧ドメインの絶対URLの両方にマッチする。
+// 画像パス(`/blog/YYYY/MM/slug/foo.png`)はスラッシュの後ろにセグメントが続くため、末尾の先読みで弾かれる
+const BLOG_LINK_PATTERN = /\/blog\/\d{4}\/\d{2}\/([\w.-]+)\/?(?=[)\s"'#?]|$)/g
+
+// 本文中でリンクしている記事を出現順に返す(重複と自己参照は除く)
+export function referencedPosts(
+  entry: CollectionEntry<'blog'>,
+  posts: CollectionEntry<'blog'>[],
+) {
+  const byId = new Map(posts.map((post) => [post.id, post]))
+  const seen = new Set([entry.id])
+  const referenced: CollectionEntry<'blog'>[] = []
+  for (const [, id] of (entry.body ?? '').matchAll(BLOG_LINK_PATTERN)) {
+    if (seen.has(id)) continue
+    seen.add(id)
+    const post = byId.get(id)
+    if (post) referenced.push(post)
+  }
+  return referenced
+}
+
+// 同じタグ・カテゴリを持つ記事を関連度順に返す。
+// カテゴリは粒度が粗いので、タグ一致をカテゴリ一致より重く見る。同点は新しい順
+export function relatedPosts(
+  entry: CollectionEntry<'blog'>,
+  posts: CollectionEntry<'blog'>[],
+  {
+    exclude = [],
+    limit = 5,
+  }: { exclude?: CollectionEntry<'blog'>[]; limit?: number } = {},
+) {
+  const excluded = new Set([entry.id, ...exclude.map((post) => post.id)])
+  const tags = new Set(entry.data.tags)
+  return posts
+    .filter((post) => !excluded.has(post.id))
+    .map((post) => {
+      const sharedTags = post.data.tags.filter((tag) => tags.has(tag)).length
+      const sameCategory =
+        Boolean(entry.data.category) &&
+        post.data.category === entry.data.category
+      return { post, score: sharedTags * 2 + (sameCategory ? 1 : 0) }
+    })
+    .filter(({ score }) => score > 0)
+    .sort(
+      (a, b) =>
+        b.score - a.score ||
+        b.post.data.date.getTime() - a.post.data.date.getTime(),
+    )
+    .slice(0, limit)
+    .map(({ post }) => post)
+}
+
 // 一覧用の抜粋。<!-- more --> より前の本文からMarkdown記法を落として先頭を返す
 export function excerptOf(entry: CollectionEntry<'blog'>, length = 120) {
   const source = (entry.body ?? '').split('<!-- more -->')[0]

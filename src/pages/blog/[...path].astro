@@ -1,18 +1,31 @@
 ---
 import { render } from 'astro:content'
 import Footer from '../../components/Footer.astro'
+import RelatedPosts from '../../components/RelatedPosts.astro'
 import SiteHeader from '../../components/SiteHeader.astro'
 import Layout from '../../layouts/Layout.astro'
-import { blogPath, blogYearMonth, formatDate, slugifyTerm, sortedBlogPosts } from '../../lib/blog'
+import {
+  blogPath,
+  blogYearMonth,
+  formatDate,
+  referencedPosts,
+  relatedPosts,
+  slugifyTerm,
+  sortedBlogPosts,
+} from '../../lib/blog'
 
 export async function getStaticPaths() {
   const posts = await sortedBlogPosts()
   return posts.map((post, index) => {
     const { year, month } = blogYearMonth(post.data.date)
+    // 本文中でリンク済みの記事は関連記事から除いて重複を避ける
+    const referenced = referencedPosts(post, posts)
     return {
       params: { path: `${year}/${month}/${post.id}` },
       props: {
         post,
+        referenced,
+        related: relatedPosts(post, posts, { exclude: referenced }),
         // 新しい順に並んでいるので、prev = 1つ新しい記事 / next = 1つ古い記事
         newer: posts[index - 1] ?? null,
         older: posts[index + 1] ?? null,
@@ -21,7 +34,7 @@ export async function getStaticPaths() {
   })
 }
 
-const { post, newer, older } = Astro.props
+const { post, referenced, related, newer, older } = Astro.props
 const { title, date, category, tags } = post.data
 const { Content, headings } = await render(post)
 
@@ -68,6 +81,7 @@ const dateLabel = formatDate(date)
     <div class="body">
       <Content />
     </div>
+    <RelatedPosts referenced={referenced} related={related} />
     <nav class="post-nav" aria-label="前後の記事">
       {
         newer ? (

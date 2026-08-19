@@ -1,0 +1,104 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { blogPath, formatDate } from '../lib/blog'
+
+interface Props {
+  referenced: CollectionEntry<'blog'>[]
+  related: CollectionEntry<'blog'>[]
+}
+
+const { referenced, related } = Astro.props
+const sections = [
+  { label: 'Referenced articles', posts: referenced },
+  { label: 'Related articles', posts: related },
+].filter((section) => section.posts.length > 0)
+---
+
+{
+  sections.length > 0 && (
+    <aside class="related">
+      {sections.map((section) => (
+        <section>
+          <h2 class="label">{section.label}</h2>
+          <ul>
+            {section.posts.map((post) => (
+              <li>
+                <a href={blogPath(post)}>
+                  <span class="meta">
+                    <time datetime={post.data.date.toISOString()}>
+                      {formatDate(post.data.date)}
+                    </time>
+                    {post.data.category && <span class="category">{post.data.category}</span>}
+                  </span>
+                  <span class="post-title">{post.data.title}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </aside>
+  )
+}
+
+<style>
+  .related {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    margin-top: 64px;
+    padding-top: 40px;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .label {
+    color: var(--color-accent-strong);
+    font-family: var(--font-display-thin);
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 16px;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  a {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: var(--color-bg-section);
+    text-decoration: none;
+  }
+
+  .meta {
+    display: flex;
+    gap: 12px;
+    align-items: baseline;
+    color: var(--color-accent);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .category {
+    color: var(--color-text-sub);
+  }
+
+  .post-title {
+    color: var(--color-text);
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
+  a:hover .post-title {
+    color: var(--color-accent);
+  }
+</style>
