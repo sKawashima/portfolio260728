@@ -1,3 +1,8 @@
+---
+name: create-pr
+description: 適切にブランチを切ってcommitし、ghコマンドでPRを作成する。作成後はレビュー対応ループを開始する。
+---
+
 適切にブランチを切る
 適切なグループごとに commit する
 commit message は冒頭にその変更に合うemojiを入れて英語で作る

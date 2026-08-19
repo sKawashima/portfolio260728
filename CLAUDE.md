@@ -34,6 +34,6 @@ main への直コミット禁止。
 
 `.claude/settings.local.json` も commit 対象に含める（権限設定をチームで共有するため）。
 
-PRは /create-pr コマンドを参照する。
+PRは /create-pr スキルを参照する。
 
 `/init-branch` は作業の最初（実装開始前）にのみ呼ぶ。実装途中や `/create-pr` 直前に呼ばないこと。
