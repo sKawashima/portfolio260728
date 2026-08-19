@@ -1,7 +1,6 @@
 ---
 name: init-branch
-description: main ブランチに戻って最新の origin/main を pull する。作業の最初（実装開始前）にのみ使う。
-disable-model-invocation: true
+description: main ブランチに戻って最新の origin/main を pull する。新しい作業に着手する最初の一手としてのみ使う（「新しい作業を始める」「Issueに着手する」など、実装を書き始める前）。実装途中やPR作成直前には使わない。
 ---
 
 main ブランチに戻って最新の origin/main を pull する。
