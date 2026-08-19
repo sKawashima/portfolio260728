@@ -95,24 +95,45 @@
 
 /*
  * Shiki デュアルテーマの切り替え。
- * ライトはインラインスタイル(デフォルト)、ダークはCSS変数(--shiki-dark)で上書きする。
+ * defaultColor: false によりインラインスタイルは CSS 変数のみになるので、
+ * ライト/ダークどちらも下記の CSS で色を当てる。
+ * 背景色は pre(.astro-code)だけに指定する。span にも指定すると
+ * --shiki-*-bg が継承されてトークンごとに背景が塗られてしまう。
  */
+.astro-code {
+  background-color: var(--shiki-light-bg);
+}
+
+.astro-code,
+.astro-code span {
+  color: var(--shiki-light);
+  font-style: var(--shiki-light-font-style, normal);
+  font-weight: var(--shiki-light-font-weight, normal);
+  text-decoration: var(--shiki-light-text-decoration, none);
+}
+
 @media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .astro-code {
+    background-color: var(--shiki-dark-bg);
+  }
+
   :root:not([data-theme="light"]) .astro-code,
   :root:not([data-theme="light"]) .astro-code span {
     color: var(--shiki-dark);
-    background-color: var(--shiki-dark-bg);
-    font-style: var(--shiki-dark-font-style);
-    font-weight: var(--shiki-dark-font-weight);
-    text-decoration: var(--shiki-dark-text-decoration);
+    font-style: var(--shiki-dark-font-style, normal);
+    font-weight: var(--shiki-dark-font-weight, normal);
+    text-decoration: var(--shiki-dark-text-decoration, none);
   }
+}
+
+:root[data-theme="dark"] .astro-code {
+  background-color: var(--shiki-dark-bg);
 }
 
 :root[data-theme="dark"] .astro-code,
 :root[data-theme="dark"] .astro-code span {
   color: var(--shiki-dark);
-  background-color: var(--shiki-dark-bg);
-  font-style: var(--shiki-dark-font-style);
-  font-weight: var(--shiki-dark-font-weight);
-  text-decoration: var(--shiki-dark-text-decoration);
+  font-style: var(--shiki-dark-font-style, normal);
+  font-weight: var(--shiki-dark-font-weight, normal);
+  text-decoration: var(--shiki-dark-text-decoration, none);
 }

@@ -25,6 +25,9 @@ export default defineConfig({
         light: 'github-light',
         dark: 'github-dark',
       },
+      // インラインスタイルで色を焼き込まず --shiki-light / --shiki-dark のみ出力させ、
+      // 配色は tokens.css 側の CSS だけで切り替える(!important 合戦を避けるため)
+      defaultColor: false,
     },
   },
 })
