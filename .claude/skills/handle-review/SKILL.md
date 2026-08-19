@@ -1,8 +1,7 @@
 ---
 name: handle-review
-description: PRのレビューコメントを確認し、対応方針をユーザーに提示してから実装する。
+description: PRのレビューコメントを確認し、対応方針をユーザーに提示してから実装する。PR作成後のレビュー対応や、「レビュー見て」「指摘に対応して」と言われたときに使う。CodeRabbitやClaude Code Reviewの指摘の取り込み、レビュースレッドのResolveまで行う。
 argument-hint: "[PR番号]"
-disable-model-invocation: true
 ---
 
 PRのレビューコメントを確認し、対応方針をユーザーに提示してから実装する。
