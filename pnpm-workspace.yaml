@@ -1,0 +1,6 @@
+# pnpm 11 では package.json の "pnpm" フィールドが読まれなくなったため、
+# ビルドスクリプト実行の許可(旧 onlyBuiltDependencies)はこちらで管理する
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  sharp: true

@@ -22,10 +22,5 @@
     "@biomejs/biome": "^2.4.15",
     "sass-embedded": "^1.100.0"
   },
-  "packageManager": "pnpm@10.28.0",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "sharp"
-    ]
-  }
+  "packageManager": "pnpm@11.22.0"
 }

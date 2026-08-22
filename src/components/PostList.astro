@@ -1,25 +1,34 @@
 ---
-import type { CollectionEntry } from 'astro:content'
-import { blogPath, excerptOf, formatDate } from '../lib/blog'
+import type { FeedEntry } from '../lib/blog'
+import { formatDate } from '../lib/blog'
+import ExternalMark from './ExternalMark.astro'
 
 interface Props {
-  posts: CollectionEntry<'blog'>[]
+  entries: FeedEntry[]
 }
 
-const { posts } = Astro.props
+const { entries } = Astro.props
 ---
 
 <ul class="post-list">
   {
-    posts.map((post) => (
+    entries.map((entry) => (
       <li class="post-item">
-        <a href={blogPath(post)}>
+        <a
+          href={entry.href}
+          target={entry.kind === 'note' ? '_blank' : undefined}
+          rel={entry.kind === 'note' ? 'noopener noreferrer' : undefined}
+        >
           <p class="meta">
-            <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-            {post.data.category && <span class="category">{post.data.category}</span>}
+            <time datetime={entry.date.toISOString()}>{formatDate(entry.date)}</time>
+            {entry.kind === 'note' ? (
+              <ExternalMark />
+            ) : (
+              entry.label && <span class="category">{entry.label}</span>
+            )}
           </p>
-          <h2 class="title">{post.data.title}</h2>
-          <p class="excerpt">{excerptOf(post)}</p>
+          <h2 class="title">{entry.title}</h2>
+          <p class="excerpt">{entry.excerpt}</p>
         </a>
       </li>
     ))
