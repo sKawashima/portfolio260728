@@ -24,11 +24,19 @@ function unwrapCdata(text: string) {
   return text.replace(/^\s*<!\[CDATA\[([\s\S]*?)\]\]>\s*$/, '$1')
 }
 
+// 数値文字参照が Unicode の範囲(0..0x10FFFF)外だと String.fromCodePoint が RangeError を投げ、
+// 1件の壊れた参照でフィード全体のパースが落ちてしまうため、範囲外は元の文字列のまま残す
+function codePointOr(point: number, fallback: string) {
+  return Number.isInteger(point) && point >= 0 && point <= 0x10ffff
+    ? String.fromCodePoint(point)
+    : fallback
+}
+
 function decodeEntities(text: string) {
   return text
-    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
-    .replace(/&#x([0-9a-f]+);/gi, (_, code) =>
-      String.fromCodePoint(Number.parseInt(code, 16)),
+    .replace(/&#(\d+);/g, (match, code) => codePointOr(Number(code), match))
+    .replace(/&#x([0-9a-f]+);/gi, (match, code) =>
+      codePointOr(Number.parseInt(code, 16), match),
     )
     .replace(/&quot;/g, '"')
     .replace(/&apos;/g, "'")

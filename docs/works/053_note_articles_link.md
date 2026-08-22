@@ -32,6 +32,11 @@ note (https://note.com/_shiba) に投稿した記事を、トップの Blog リ�
 - `pnpm install --frozen-lockfile` が pnpm 11.22.0 で通ること(CI の `pnpm/action-setup` は `packageManager` を参照する)
 - ブラウザでの見た目確認は Chrome 拡張が localhost に到達できず未実施
 
+## レビュー対応
+
+- Claude Code Review 指摘: `decodeEntities` の数値文字参照(`&#NNN;` / `&#xHHH;`)で `String.fromCodePoint` に Unicode 範囲外(`> 0x10FFFF`)の値を渡すと `RangeError` になり、`parseNoteRss` 全体が落ちて note 記事が全件消える。`codePointOr()` を足し、範囲外(非整数・負数含む)は元の文字列のまま残すようにした。`&#99999999;` / `&#x110000;` を含む item が他の item を巻き込まずにパースされることを node で確認
+- CodeRabbit は指摘なしで APPROVED
+
 ## 課題・次のステップ
 
 - note の RSS が返す件数に上限がある場合(一般に直近 25 件程度)、それより古い記事は一覧から落ちる。記事数が増えたら `note.com/api/v2/creators/_shiba/contents` のページングに切り替えるか、古い記事だけ静的リストで補う
