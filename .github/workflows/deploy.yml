@@ -3,6 +3,11 @@ name: Build & Deploy
 on:
   push:
     branches: [main]
+  # note の記事一覧はビルド時に RSS から取得するため、push が無くても週1回は再ビルドして新着を反映する
+  # (毎週月曜 09:00 JST = 00:00 UTC)
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
 
 jobs:
   build:
