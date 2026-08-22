@@ -3,10 +3,11 @@ import BlogPageShell from '../../components/BlogPageShell.astro'
 import BlogTaxonomy from '../../components/BlogTaxonomy.astro'
 import Pagination from '../../components/Pagination.astro'
 import PostList from '../../components/PostList.astro'
-import { PER_PAGE, sortedBlogPosts } from '../../lib/blog'
+import { PER_PAGE, sortedBlogFeed } from '../../lib/blog'
 
-const posts = await sortedBlogPosts()
-const totalPages = Math.ceil(posts.length / PER_PAGE)
+// ローカル記事 + note 記事(外部リンク)を新しい順に並べる
+const entries = await sortedBlogFeed()
+const totalPages = Math.ceil(entries.length / PER_PAGE)
 ---
 
 <BlogPageShell title="sKawashima's blog" heading="Blog" lead="デザインと開発とアートの間でざくざくやってます。">
@@ -15,7 +16,7 @@ const totalPages = Math.ceil(posts.length / PER_PAGE)
     <a href="/blog/archives/">Archives</a>
     <a href="/blog/atom.xml">RSS</a>
   </nav>
-  <PostList posts={posts.slice(0, PER_PAGE)} />
+  <PostList entries={entries.slice(0, PER_PAGE)} />
   <Pagination current={1} total={totalPages} />
   <BlogTaxonomy />
 </BlogPageShell>
