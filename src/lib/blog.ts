@@ -25,6 +25,60 @@ export async function sortedBlogPosts() {
   return posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 }
 
+// 一覧表示用に、ローカル記事と note の外部記事を同じ形へ正規化したもの。
+// note 記事には本文・タグが無いので、タグ/カテゴリ/関連記事/フィードには混ぜず、
+// トップ・一覧・Archives だけで使う
+export type FeedEntry =
+  | {
+      kind: 'post'
+      title: string
+      href: string
+      date: Date
+      label?: string
+      excerpt: string
+    }
+  | {
+      kind: 'note'
+      title: string
+      href: string
+      date: Date
+      label: 'note'
+      excerpt: string
+    }
+
+export function postFeedEntry(post: CollectionEntry<'blog'>): FeedEntry {
+  return {
+    kind: 'post',
+    title: post.data.title,
+    href: blogPath(post),
+    date: post.data.date,
+    label: post.data.category,
+    excerpt: excerptOf(post),
+  }
+}
+
+export function noteFeedEntry(note: CollectionEntry<'note'>): FeedEntry {
+  return {
+    kind: 'note',
+    title: note.data.title,
+    href: note.data.url,
+    date: note.data.date,
+    label: 'note',
+    excerpt: note.data.excerpt,
+  }
+}
+
+// ローカル記事 + note 記事を新しい順にマージした一覧
+export async function sortedBlogFeed(): Promise<FeedEntry[]> {
+  const [posts, notes] = await Promise.all([
+    sortedBlogPosts(),
+    getCollection('note'),
+  ])
+  return [...posts.map(postFeedEntry), ...notes.map(noteFeedEntry)].sort(
+    (a, b) => b.date.getTime() - a.date.getTime(),
+  )
+}
+
 export function formatDate(date: Date) {
   return new Intl.DateTimeFormat('ja-JP', {
     timeZone: 'Asia/Tokyo',

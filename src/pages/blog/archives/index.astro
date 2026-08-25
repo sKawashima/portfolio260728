@@ -1,28 +1,37 @@
 ---
 import BlogPageShell from '../../../components/BlogPageShell.astro'
-import { blogPath, blogYearMonth, formatDate, sortedBlogPosts } from '../../../lib/blog'
+import ExternalMark from '../../../components/ExternalMark.astro'
+import { blogYearMonth, formatDate, sortedBlogFeed } from '../../../lib/blog'
 
-const posts = await sortedBlogPosts()
-const byYear = new Map<string, typeof posts>()
-for (const post of posts) {
-  const { year } = blogYearMonth(post.data.date)
+// ローカル記事 + note 記事(外部リンク)を年ごとにまとめる
+const entries = await sortedBlogFeed()
+const byYear = new Map<string, typeof entries>()
+for (const entry of entries) {
+  const { year } = blogYearMonth(entry.date)
   const group = byYear.get(year) ?? []
-  group.push(post)
+  group.push(entry)
   byYear.set(year, group)
 }
 const years = [...byYear.entries()]
 ---
 
-<BlogPageShell title="Archives | sKawashima's blog" heading="Archives" lead={`全${posts.length}記事`}>
+<BlogPageShell title="Archives | sKawashima's blog" heading="Archives" lead={`全${entries.length}記事`}>
   {
-    years.map(([year, yearPosts]) => (
+    years.map(([year, yearEntries]) => (
       <section class="year">
         <h2>{year}</h2>
         <ul>
-          {yearPosts.map((post) => (
+          {yearEntries.map((entry) => (
             <li>
-              <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
-              <a href={blogPath(post)}>{post.data.title}</a>
+              <time datetime={entry.date.toISOString()}>{formatDate(entry.date)}</time>
+              <a
+                href={entry.href}
+                target={entry.kind === 'note' ? '_blank' : undefined}
+                rel={entry.kind === 'note' ? 'noopener noreferrer' : undefined}
+              >
+                {entry.title}
+                {entry.kind === 'note' && <ExternalMark />}
+              </a>
             </li>
           ))}
         </ul>
@@ -73,5 +82,11 @@ const years = [...byYear.entries()]
 
   .year a:hover {
     color: var(--color-accent);
+  }
+
+  .year a :global(.external-mark) {
+    margin-left: 8px;
+    font-size: 12px;
+    vertical-align: 0.1em;
   }
 </style>

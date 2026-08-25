@@ -1,7 +1,7 @@
 ---
 import BlogPageShell from '../../../components/BlogPageShell.astro'
 import PostList from '../../../components/PostList.astro'
-import { slugifyTerm, sortedBlogPosts } from '../../../lib/blog'
+import { slugifyTerm, postFeedEntry, sortedBlogPosts } from '../../../lib/blog'
 
 export async function getStaticPaths() {
   const posts = await sortedBlogPosts()
@@ -24,7 +24,7 @@ const { name, posts } = Astro.props
 ---
 
 <BlogPageShell title={`#${name} | sKawashima's blog`} heading={`#${name}`} lead={`${posts.length}件の記事`}>
-  <PostList posts={posts} />
+  <PostList entries={posts.map(postFeedEntry)} />
   <p class="back"><a href="/blog/tags/">← すべてのタグ</a></p>
 </BlogPageShell>
 

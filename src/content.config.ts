@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content'
 import { glob } from 'astro/loaders'
+import { fetchNoteArticles } from './lib/note'
 
 const works = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/works' }),
@@ -35,7 +36,26 @@ const blog = defineCollection({
   }),
 })
 
+// note に投稿した記事。ビルド時に RSS を取得し、一覧・トップ・Archivesへ外部リンクとして混ぜる
+const note = defineCollection({
+  loader: async () => {
+    const articles = await fetchNoteArticles()
+    return articles.map(({ date, ...article }) => ({
+      ...article,
+      date: date.toISOString(),
+    }))
+  },
+  schema: z.object({
+    title: z.string(),
+    url: z.string().url(),
+    date: z.coerce.date(),
+    excerpt: z.string(),
+    thumbnail: z.string().optional(),
+  }),
+})
+
 export const collections = {
   works,
   blog,
+  note,
 }
