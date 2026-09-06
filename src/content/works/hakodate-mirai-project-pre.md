@@ -11,7 +11,6 @@ date: "2016年9月"
 sortDate: "2016-09-01"
 technologies: "Illustrator / HTML,Sass / PHP"
 thumbnail: "./images/hmp-pre.png"
-link: "http://hakodate-miraiproject.jp/pre-comming/"
 ---
 
 函館駅前に新たに設置される「はこだてみらい館」と「はこだてキッズプラザ」の告知のため、運営コンソーシアムより依頼され制作。

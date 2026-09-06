@@ -9,7 +9,7 @@ tags: ["JavaScript", "npm", "simplemde"]
 
 * [SimpleMDE - Markdown Editor](https://github.com/sparksuite/simplemde-markdown-editor)
 
-[簡単に組み込めるマークダウンエディタとして紹介されてる記事](http://unitopi.com/markdown-editor/)がいくつか上がってるライブラリ。
+簡単に組み込めるマークダウンエディタとして紹介されてる記事がいくつか上がってるライブラリ。
 便利そうです。
 
 <!-- more -->
