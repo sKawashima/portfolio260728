@@ -1,7 +1,8 @@
 ---
-title: "株式会社函館ラボラトリ"
+title: "株式会社函館ラボラトリ Webサイト"
 genres: [
-  { name: "Web", type: "web" }
+  { name: "デザイン", type: "design" },
+  { name: "開発", type: "development" }
 ]
 activity: "受注製作"
 memberCount: "1人"

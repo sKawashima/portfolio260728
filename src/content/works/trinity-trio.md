@@ -1,8 +1,8 @@
 ---
-title: "Trinity Trio"
+title: "Trinity Trio Webサイト"
 genres: [
-  { name: "Web", type: "web" },
-  { name: "Art", type: "art" }
+  { name: "開発", type: "development" },
+  { name: "マネジメント", type: "management" }
 ]
 activity: "アーティスト活動"
 memberCount: "3人"

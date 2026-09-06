@@ -10,7 +10,15 @@ const works = defineCollection({
       genres: z.array(
         z.object({
           name: z.string(),
-          type: z.enum(['web', 'proposal', 'movie', 'music', 'art', 'graphic']),
+          type: z.enum([
+            'composition',
+            'video',
+            'design',
+            'development',
+            'proposal',
+            'management',
+            'staging',
+          ]),
         }),
       ),
       activity: z.string(),

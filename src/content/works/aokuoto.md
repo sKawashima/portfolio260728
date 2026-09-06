@@ -1,9 +1,9 @@
 ---
 title: "個人展覧会「青ク音ト」"
 genres: [
-  { name: "Music", type: "music" },
-  { name: "Movie", type: "movie" },
-  { name: "Art", type: "art" }
+  { name: "作曲", type: "composition" },
+  { name: "映像制作", type: "video" },
+  { name: "空間演出", type: "staging" }
 ]
 activity: "アーティスト活動"
 memberCount: "5人"

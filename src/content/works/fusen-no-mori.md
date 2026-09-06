@@ -1,8 +1,9 @@
 ---
-title: "「ふうせんの森」特設ページ"
+title: "「ふうせんの森」特設Webページ"
 genres: [
-  { name: "Web", type: "web" },
-  { name: "提案", type: "proposal" }
+  { name: "デザイン", type: "design" },
+  { name: "開発", type: "development" },
+  { name: "企画・提案", type: "proposal" }
 ]
 activity: "課外活動"
 memberCount: "2人"

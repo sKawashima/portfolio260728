@@ -1,8 +1,7 @@
 ---
-title: "諦めと戒め"
+title: "諦めと戒め 楽曲"
 genres: [
-  { name: "Art", type: "art" },
-  { name: "Music", type: "music" }
+  { name: "作曲", type: "composition" }
 ]
 activity: "アーティスト活動"
 memberCount: "2人"
