@@ -13,6 +13,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Slack Comment (Deploy Start)
+        if: github.event_name == 'push'
+        uses: Ilshidur/action-slack@master
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        with:
+          args: ${{ github.sha }}${{ ' のデプロイを開始するよ。' }}
+
       - uses: actions/checkout@v4
 
       - uses: pnpm/action-setup@v4
@@ -47,6 +55,17 @@ jobs:
           path: dist/
           include-hidden-files: true
 
+      - name: Slack Notification (Build Failure)
+        if: failure() && github.event_name == 'push'
+        uses: homoluctus/slatify@master
+        with:
+          type: ${{ job.status }}
+          job_name: '*Build*'
+          mention: 'here'
+          mention_if: 'failure'
+          channel: '#blog'
+          url: ${{ secrets.SLACK_WEBHOOK }}
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -67,3 +86,22 @@ jobs:
           local-dir: ./dist/
           server-dir: /skawashima.com/
           state-name: .ftp-deploy-sync-state.json
+
+      - name: Slack Notification (Deploy Failure)
+        if: failure() && github.event_name == 'push'
+        uses: homoluctus/slatify@master
+        with:
+          type: ${{ job.status }}
+          job_name: '*Deploy*'
+          mention: 'here'
+          mention_if: 'failure'
+          channel: '#blog'
+          url: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Slack Comment (Deploy Complete)
+        if: github.event_name == 'push'
+        uses: Ilshidur/action-slack@master
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        with:
+          args: 'デプロイしたよ。お疲れ、skawashima。'
