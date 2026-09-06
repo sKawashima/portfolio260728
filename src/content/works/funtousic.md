@@ -1,5 +1,5 @@
 ---
-title: "funtousic"
+title: "funtousic（提案 / Webサイト制作）"
 genres: [
   { name: "提案", type: "proposal" },
   { name: "Web", type: "web" },

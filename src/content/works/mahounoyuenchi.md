@@ -1,5 +1,5 @@
 ---
-title: "「まほうのゆうえんち」ポスター"
+title: "「まほうのゆうえんち」ポスター（デザイン）"
 genres: [
   { name: "Graphic", type: "graphic" }
 ]

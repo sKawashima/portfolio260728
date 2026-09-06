@@ -1,5 +1,5 @@
 ---
-title: "Pinky"
+title: "Pinky（コンセプト立案 / UX,UIデザイン）"
 genres: [
   { name: "提案", type: "proposal" },
   { name: "Movie", type: "movie" },

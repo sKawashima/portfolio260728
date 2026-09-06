@@ -1,5 +1,5 @@
 ---
-title: "個人展覧会「青ク音ト」"
+title: "個人展覧会「青ク音ト」（作曲 / 映像制作）"
 genres: [
   { name: "Music", type: "music" },
   { name: "Movie", type: "movie" },

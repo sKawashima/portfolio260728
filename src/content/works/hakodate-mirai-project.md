@@ -1,5 +1,5 @@
 ---
-title: "はこだてみらいプロジェクト"
+title: "はこだてみらいプロジェクト（実装）"
 genres: [
   { name: "Web", type: "web" }
 ]

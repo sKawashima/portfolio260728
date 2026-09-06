@@ -1,5 +1,5 @@
 ---
-title: "Personality"
+title: "Personality（考案 / デザイン）"
 genres: [
   { name: "Art", type: "art" },
   { name: "Web", type: "web" }

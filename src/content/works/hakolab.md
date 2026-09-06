@@ -1,5 +1,5 @@
 ---
-title: "株式会社函館ラボラトリ"
+title: "株式会社函館ラボラトリ（デザイン / 開発全般）"
 genres: [
   { name: "Web", type: "web" }
 ]

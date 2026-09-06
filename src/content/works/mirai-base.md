@@ -1,5 +1,5 @@
 ---
-title: "MIRAI BASE"
+title: "MIRAI BASE（デザイン / 開発全般）"
 genres: [
   { name: "Web", type: "web" }
 ]

@@ -1,5 +1,5 @@
 ---
-title: "ミライノハコバス"
+title: "ミライノハコバス（Web制作リーダー / デザイン）"
 genres: [
   { name: "Web", type: "web" },
   { name: "Movie", type: "movie" },

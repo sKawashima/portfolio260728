@@ -1,5 +1,5 @@
 ---
-title: "Silver Cluster"
+title: "Silver Cluster（作曲）"
 genres: [
   { name: "Art", type: "art" },
   { name: "Music", type: "music" }

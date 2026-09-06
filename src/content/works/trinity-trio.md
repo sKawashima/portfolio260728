@@ -1,5 +1,5 @@
 ---
-title: "Trinity Trio"
+title: "Trinity Trio（開発全般 / マネジメント）"
 genres: [
   { name: "Web", type: "web" },
   { name: "Art", type: "art" }

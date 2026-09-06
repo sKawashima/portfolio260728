@@ -1,5 +1,5 @@
 ---
-title: "@0314 -nil history-"
+title: "@0314 -nil history-（作曲 / 映像制作）"
 genres: [
   { name: "Art", type: "art" },
   { name: "Music", type: "music" },

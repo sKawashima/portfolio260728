@@ -1,5 +1,5 @@
 ---
-title: "諦めと戒め"
+title: "諦めと戒め（作曲）"
 genres: [
   { name: "Art", type: "art" },
   { name: "Music", type: "music" }
