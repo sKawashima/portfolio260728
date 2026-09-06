@@ -1,7 +1,7 @@
 ---
-title: "はこだて未来展2015 リフレクションムービー（映像編集）"
+title: "はこだて未来展2015 リフレクションムービー"
 genres: [
-  { name: "Movie", type: "movie" }
+  { name: "映像制作", type: "video" }
 ]
 activity: "課外活動"
 memberCount: "2人"

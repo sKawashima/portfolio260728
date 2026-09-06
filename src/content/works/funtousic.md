@@ -1,10 +1,10 @@
 ---
-title: "funtousic（提案 / Webサイト制作）"
+title: "funtousic Webサイト"
 genres: [
-  { name: "提案", type: "proposal" },
-  { name: "Web", type: "web" },
-  { name: "Movie", type: "movie" },
-  { name: "Music", type: "music" }
+  { name: "企画・提案", type: "proposal" },
+  { name: "開発", type: "development" },
+  { name: "映像制作", type: "video" },
+  { name: "作曲", type: "composition" }
 ]
 activity: "授業課題"
 memberCount: "4人"

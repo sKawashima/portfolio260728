@@ -1,8 +1,7 @@
 ---
-title: "Silver Cluster（作曲）"
+title: "Silver Cluster 楽曲"
 genres: [
-  { name: "Art", type: "art" },
-  { name: "Music", type: "music" }
+  { name: "作曲", type: "composition" }
 ]
 activity: "アーティスト活動"
 memberCount: "2人"

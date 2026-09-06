@@ -1,9 +1,10 @@
 ---
-title: "Pinky（コンセプト立案 / UX,UIデザイン）"
+title: "Pinky ハッカソン成果物"
 genres: [
-  { name: "提案", type: "proposal" },
-  { name: "Movie", type: "movie" },
-  { name: "Music", type: "music" }
+  { name: "企画・提案", type: "proposal" },
+  { name: "デザイン", type: "design" },
+  { name: "映像制作", type: "video" },
+  { name: "作曲", type: "composition" }
 ]
 activity: "ハッカソン成果"
 memberCount: "5人(Team !kie)"

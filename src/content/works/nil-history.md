@@ -1,9 +1,8 @@
 ---
-title: "@0314 -nil history-（作曲 / 映像制作）"
+title: "@0314 -nil history- MV"
 genres: [
-  { name: "Art", type: "art" },
-  { name: "Music", type: "music" },
-  { name: "Movie", type: "movie" }
+  { name: "作曲", type: "composition" },
+  { name: "映像制作", type: "video" }
 ]
 activity: "アーティスト活動"
 memberCount: "1人"

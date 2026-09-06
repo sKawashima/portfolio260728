@@ -1,9 +1,10 @@
 ---
-title: "ミライノハコバス（Web制作リーダー / デザイン）"
+title: "ミライノハコバス Webサイト"
 genres: [
-  { name: "Web", type: "web" },
-  { name: "Movie", type: "movie" },
-  { name: "Music", type: "music" }
+  { name: "マネジメント", type: "management" },
+  { name: "デザイン", type: "design" },
+  { name: "開発", type: "development" },
+  { name: "映像制作", type: "video" }
 ]
 activity: "課外活動"
 memberCount: "3人"

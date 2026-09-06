@@ -1,8 +1,9 @@
 ---
-title: "Personality（考案 / デザイン）"
+title: "Personality メディアアート"
 genres: [
-  { name: "Art", type: "art" },
-  { name: "Web", type: "web" }
+  { name: "企画・提案", type: "proposal" },
+  { name: "デザイン", type: "design" },
+  { name: "開発", type: "development" }
 ]
 activity: "授業課題"
 memberCount: "1人"

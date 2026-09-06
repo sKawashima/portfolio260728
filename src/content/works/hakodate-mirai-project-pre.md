@@ -1,7 +1,8 @@
 ---
-title: "はこだてみらいプロジェクト プレサイト（実装全般）"
+title: "はこだてみらいプロジェクト Webプレサイト"
 genres: [
-  { name: "Web", type: "web" }
+  { name: "デザイン", type: "design" },
+  { name: "開発", type: "development" }
 ]
 activity: "課外活動"
 memberCount: "1人"

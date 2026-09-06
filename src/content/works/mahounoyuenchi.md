@@ -1,7 +1,7 @@
 ---
-title: "「まほうのゆうえんち」ポスター（デザイン）"
+title: "「まほうのゆうえんち」ポスター"
 genres: [
-  { name: "Graphic", type: "graphic" }
+  { name: "デザイン", type: "design" }
 ]
 activity: "課外活動"
 memberCount: "1人"

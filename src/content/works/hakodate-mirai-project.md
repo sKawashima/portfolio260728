@@ -1,7 +1,7 @@
 ---
-title: "はこだてみらいプロジェクト（実装）"
+title: "はこだてみらいプロジェクト Webサイト"
 genres: [
-  { name: "Web", type: "web" }
+  { name: "開発", type: "development" }
 ]
 activity: "課外活動"
 memberCount: "5人"
