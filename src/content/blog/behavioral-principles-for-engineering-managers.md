@@ -5,7 +5,7 @@ category: "Team Management"
 tags: ["Management", "Leadership", "Team", "Career", "Engineering"]
 ---
 
-Googleが2008年に始めた「[Project Oxygen](https://rework.withgoogle.com/intl/en/guides/managers-research-behind-great-managers)」という研究がある。
+Googleが2008年に始めた「[Project Oxygen](https://rework.withgoogle.com/intl/jp/guides/managers-research-behind-great-managers)」という研究がある。
 
 きっかけはある仮説の検証だった。
 「マネージャーは実際には重要ではないのではないか」という仮説だ。
@@ -61,7 +61,7 @@ Project Oxygenの10特性のうち、筆頭に挙げられているのが「優�
 1on1で「どうすればいいか」を言い続けるマネージャーは、チームを依存させてしまう。
 「どう思う？」「何が障害になってると思う？」と問い返す習慣が、メンバーの自律的な思考力を育てる。
 
-Googleが[マネージャー向けに提供しているAIプロンプト例](https://rework.withgoogle.com/intl/en/guides/managers-research-behind-great-managers)が参考になる。
+Googleが[マネージャー向けに提供しているAIプロンプト例](https://rework.withgoogle.com/intl/jp/guides/managers-research-behind-great-managers)が参考になる。
 
 > 「課題に直面しているチームメンバーが自分自身の解決策を特定するのを助けるための、3つの効果的なオープンエンドのコーチング質問は何ですか？」
 
@@ -91,7 +91,7 @@ Googleが[マネージャー向けに提供しているAIプロンプト例](htt
 
 コード行数、1日あたりのコミット数、こなしたチケット数。
 これで個人をランク付けすれば、チームはたちまち競合関係になる。
-[Project Aristotle](https://rework.withgoogle.com/intl/en/guides/managers-research-behind-great-managers)では、チームメンバーの個人パフォーマンスとチームの効果性は有意に関連しないことが示されている。
+[Project Aristotle](https://rework.withgoogle.com/intl/jp/guides/understanding-team-effectiveness)では、チームメンバーの個人パフォーマンスとチームの効果性は有意に関連しないことが示されている。
 チームとして「どのように協力するか」が「誰がいるか」より重要と述べられている。
 
 代わりに使いたいのが、DORA（DevOps Research and Assessment）が特定した[Four Key Metrics](https://www.usehaystack.io/blog/managing-developers-measure-dont-micromanage)だ。

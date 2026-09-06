@@ -34,7 +34,7 @@ ${{これ}}
 
 ### 参考
 
-[Context and expression syntax for GitHub Actions - GitHub ヘルプ](https://help.github.com/ja/actions/reference/context-and-expression-syntax-for-github-actions)
+[コンテキストのリファレンス - GitHub Docs](https://docs.github.com/ja/actions/reference/contexts-reference)
 
 ## 所管
 
