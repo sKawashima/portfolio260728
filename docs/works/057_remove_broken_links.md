@@ -14,6 +14,8 @@ Issue #57 の対応。
 | `blog/github-actions-text-concat.md` | `help.github.com/ja/actions/reference/context-and-expression-syntax-for-github-actions` (404) | `docs.github.com/ja/actions/reference/contexts-reference` |
 | `blog/life-improvement-tool-2019.md` | `slack.com/apps/A8GBNUWU8-github` (404) | `slack.com/marketplace/A01BP7R4KNY-github` |
 | `blog/behavioral-principles-for-engineering-managers.md` | `rework.withgoogle.com/intl/en/guides/managers-research-behind-great-managers` × 3 | Project Oxygen / AIプロンプト例 → `intl/jp/guides/managers-research-behind-great-managers`、Project Aristotle → `intl/jp/guides/understanding-team-effectiveness` |
+| `blog/designer-develop.md` | `spajam.jp/2019/final/result/` | `history.spajam.jp/2019/final/result/` |
+| `blog/spajam2019pre-why-am-i-backend.md` | `spajam.jp/2019/entry/tokyo-b/` | `history.spajam.jp/2019/entry/tokyo-b/` |
 
 ### 削除したもの（復活の見込みなし）
 
@@ -22,18 +24,17 @@ Issue #57 の対応。
 | `works/soracamera.md` | `http://soracamera.com/` | DNS消滅 (NXDOMAIN) | `link:` 行を削除 |
 | `works/hakodate-mirai-project-pre.md` | `hakodate-miraiproject.jp/pre-comming/` | 404 | `link:` 行を削除 |
 | `works/fusen-no-mori.md` | `hakodate-miraiproject.jp/wp_test/baloon/` | 404 | `link:` 行を削除 |
-| `blog/tokt_1-night-development.md` | `neos21.hatenablog.com/entry/2017/11/01/080000` | 404 | リンクを外し本文は残す |
+| `blog/tokt_1-night-development.md` | `neos21.hatenablog.com/entry/2017/11/01/080000` | 404 | 「この記事に出会っていなければ…」は文ごと削除 |
 | `blog/use-simplemde-in-npm.md` | `unitopi.com/markdown-editor/` | 接続拒否（サーバ停止） | リンクを外し本文は残す |
-| `blog/designer-develop.md` | `spajam.jp/2019/final/result/` | サイト刷新で消滅 | リンクカード段落を削除 |
-| `blog/spajam2019pre-why-am-i-backend.md` | `spajam.jp/2019/entry/tokyo-b/` | 同上 | リンクカード段落を削除 |
-| `blog/designer-develop.md` | Zaimトレンドの `link-preview` ブロック | サービス消滅・OGP画像も壊れ | `<div>` ごと削除 |
+| `blog/designer-develop.md` | Zaimトレンドの `link-preview` ブロック | サービス消滅・OGP画像も壊れ | `<div>` と「覗いてみてください」の文を削除 |
 
 ## 判断
 
 - **差し替え優先**: 出典としての情報価値が残るものは削除せず現行URLへ。特に `works/pinky.md` は旧ドメインの絶対URLで自サイトの記事を指していたので、内部リンク `/blog/YYYY/MM/{id}/` に直した。
-- **文章は改変しない**: 過去記事の本文は当時の記録なので、リンク記法だけ外してテキストは残した。
+- **文章は改変しない**: 過去記事の本文は当時の記録なので、原則リンク記法だけ外してテキストは残す。ただし指示語や誘導文のようにリンクが無いと成り立たない文は、文ごと削除した。
 - **Project Aristotle の出典ミス修正**: `behavioral-principles-for-engineering-managers.md` は3か所で同一URLを別々の主張の出典にしていた。Project Aristotle はチームの効果性のガイドが正しいので、リンク切れ修正のついでに正した。
-- **SPAJAM の判定根拠**: `spajam.jp` は Nuxt の SPA で存在しないパスも 200 を返す。配信JSバンドルの route 定義に `/2019/` 系が無いことを確認して死亡と判定した。
+- **SPAJAM はアーカイブへ**: `spajam.jp` は Nuxt の SPA で存在しないパスも 200 を返し、配信JSバンドルの route 定義に `/2019/` 系が無いため本体サイトからは消えている。過去大会は `history.spajam.jp` に移されており、`final/result`（最優秀賞「RAISE UP」）・`entry/tokyo-b`（東京B予選・6/8〜9・ドワンゴ会場）とも記事の記述と一致する内容が残っていたので差し替えた。こちらも存在しないパスは Nuxt のローディングシェルを返すため、実コンテンツが返ることを確認している。
+- **リンクを外すと成り立たない文は文ごと削除**: `tokt_1-night-development.md` の「この記事に出会っていなければ完成していたかどうか…。」は指示語の指す先が消えるため削除。`designer-develop.md` の「興味がある方は是非覗いてみてください（圧倒的宣伝）。」も誘導先が消滅しているため削除した。
 - **re:Work の判定根拠**: `intl/en/` はHTTP 200を返すがタイトルが `404` のソフト404。`intl/jp/` に同一ガイドが現存する。
 
 ## 触らなかったもの
