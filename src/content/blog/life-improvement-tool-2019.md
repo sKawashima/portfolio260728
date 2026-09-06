@@ -112,7 +112,7 @@ Slackの通知が来るので安心です。
 
 #### GitHub
 
-https://slack.com/apps/A8GBNUWU8-github
+https://slack.com/marketplace/A01BP7R4KNY-github
 
 個人開発のときに使ってます。
 

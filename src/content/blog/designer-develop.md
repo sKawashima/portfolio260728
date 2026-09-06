@@ -33,12 +33,10 @@ https://qiita.com/sKawashima/items/2ba555ef709729e79d2a
 たまにSQL叩いてデータの検証もしてました。
 
 このサービスでは、**リポDが買われる時間は極端に16時に偏っている**、みたいなデータが見られます。
-興味がある方は是非覗いてみてください（圧倒的宣伝）。
 
-<div class="link-preview"><a href="https://trends.zaim.net/" class="link-preview" target="_blank" rel="noopener"><div class="link-area"><div class="og-image"><img src="https://trends.zaim.net/alphaOGP.jpg" alt="Zaim trends alpha"></div><div class="descriptions"><div class="og-title">Zaimトレンド</div><div class="og-description">Zaim トレンドは、家計簿サービス「Zaim」の買い物データを元に「最近、話題のあの商品、本当はどんな人が買ってるの？」や「いまニュースになっている、あのお店は誰に人気なの？」などが分かる、無料の発見サービスです。</div></div></div></a></div>
 また、先日出場した**ハッカソン「SPAJAM2019」**では**サーバーサイドエンジニア**（Node.js/TypeScriptとMongo in Dockerで画像受け取れるCRUD API作っただけ）として参加し、**チームとして全国優勝を果たしました。**
 
-https://spajam.jp/2019/final/result/
+https://history.spajam.jp/2019/final/result/
 
 ちなみに、**対談相手**はこのハッカソンで**同チーム内のデザイナー**として参加し、**開発するアプリのUI**と**めっちゃわかりやすい発表プレゼン資料**を作っていました。
 彼も色々と開発経験があるなどエンジニアとしての側面を持っています。

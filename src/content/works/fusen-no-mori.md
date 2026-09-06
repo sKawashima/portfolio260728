@@ -13,7 +13,6 @@ date: "2017年11月"
 sortDate: "2017-11-01"
 technologies: "XD / Pug,Sass / TypeScript / CANVAS / WordPress"
 thumbnail: "./images/baloon.png"
-link: "http://hakodate-miraiproject.jp/wp_test/baloon/"
 ---
 
 はこだてみらい館運営コンソーシアムより依頼を受けて制作。
