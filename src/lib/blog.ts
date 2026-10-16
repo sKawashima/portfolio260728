@@ -26,8 +26,8 @@ export async function sortedBlogPosts() {
 }
 
 // 一覧表示用に、ローカル記事と note の外部記事を同じ形へ正規化したもの。
-// note 記事には本文・タグが無いので、タグ/カテゴリ/関連記事/フィードには混ぜず、
-// トップ・一覧・Archives だけで使う
+// note 記事には本文・タグが無いので、タグ/カテゴリ/関連記事には混ぜず、
+// トップ・一覧・Archives だけで使う(RSSフィードは atom.xml.ts 側で個別に混ぜる)
 export type FeedEntry =
   | {
       kind: 'post'
