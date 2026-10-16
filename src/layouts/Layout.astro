@@ -18,6 +18,12 @@ const { title, description = 'sKawashima Portfolio' } = Astro.props
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="sKawashima's blog"
+      href={new URL('/blog/atom.xml', Astro.site)}
+    />
     <link rel="preload" href="/TextaAlt-Thin-webfont.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="/Texta-Thin-webfont.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="/Texta-Heavy-webfont.woff" as="font" type="font/woff" crossorigin />
